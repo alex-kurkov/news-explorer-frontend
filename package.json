@@ -1,7 +1,7 @@
 {
   "name": "front-news-explorer",
   "version": "0.1.0",
-  "private": true,  
+  "private": true,
   "author": "Alex Kurkov",
   "license": "ISC",
   "dependencies": {
@@ -31,6 +31,29 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "plugin:react/recommended",
+      "airbnb"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": "off"
+    }
   },
   "description": "",
   "main": "index.js",
