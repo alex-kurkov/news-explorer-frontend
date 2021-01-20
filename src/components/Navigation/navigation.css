@@ -1,0 +1,30 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+}
+.navigation__link {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  outline: none;
+  text-decoration: none;
+  position: relative;
+}
+.navigation__link:hover {
+  cursor: pointer;
+}
+.navigation__link_color_white {
+  color: #fff;
+}
+.navigation__link_color_blueblack {
+  color: #1A1B22;
+}
+.navigation__link_active_true {
+  text-decoration: underline;
+  text-underline-offset: 30px;
+  text-decoration-thickness: 3px;
+}

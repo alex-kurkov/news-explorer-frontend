@@ -1,0 +1,20 @@
+.header {
+  box-sizing: border-box;
+  width: 1440px;
+  height: 80px;
+  background-color: transparent;
+  margin: 0 auto;
+  padding: 0 104px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+}
