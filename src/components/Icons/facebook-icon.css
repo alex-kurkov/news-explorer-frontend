@@ -1,0 +1,8 @@
+.facebook-icon {
+  width: 24px;
+  height: 24px;
+}
+.facebook-icon:hover {
+  translate: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}

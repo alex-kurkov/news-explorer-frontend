@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   BrowserRouter as Router, Switch, Redirect, Route,
@@ -5,6 +6,7 @@ import {
 import Loader from '../Loader/Loader';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 
 import './App.css';
 
@@ -27,15 +29,10 @@ const App = () => {
             <Redirect to="/" />
           </Route>
         </Switch>
-        <footer>
-          FOOOOOOOOOOOOOOOOOOTER
-          <button type="button" onClick={() => setLoaderVisible(!loaderVisible)}>
-            loader
-          </button>
-          <button type="button" onClick={() => setLoggedIn(!loggedIn)}>
-            loggedIn
-          </button>
-        </footer>
+        <Footer />
+        <button type="button" onClick={() => setLoggedIn(!loggedIn)}>
+          loggedIn
+        </button>
       </Router>
       {loaderVisible && <Loader />}
     </div>

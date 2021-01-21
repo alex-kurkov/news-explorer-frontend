@@ -1,8 +1,6 @@
 .main {
   box-sizing: border-box;
   width: 1440px;
-  min-height: calc(100vh - 120px);
-  border: blue thin solid;
   margin: -80px auto 0 auto;
   padding: 0;
 }
