@@ -1,0 +1,48 @@
+.about {
+  width: 1440px;
+  box-sizing: border-box;
+  padding: 80px 216px 80px 104px;
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
+  align-items: center;
+  justify-items: center;
+}
+
+.about__image {
+  width: 464px;
+  height: 464px;
+  border-radius: 50%;
+}
+.about__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  gap: 24px;
+  height: 464px;
+}
+.about__title {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+.about__article {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.about__paragraph {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}

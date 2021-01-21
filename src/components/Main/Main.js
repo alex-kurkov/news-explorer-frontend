@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import SearchSection from '../SearchSection/SearchSection';
+import About from '../About/About';
 import './main.css';
 
 const Main = ({ loggedIn }) => {
@@ -11,7 +12,7 @@ const Main = ({ loggedIn }) => {
   return (
     <main className="main">
       <SearchSection />
-      <section>about</section>
+      <About />
     </main>
   );
 };
