@@ -4,16 +4,18 @@ import FacebookIcon from './components/Icons/FacebookIcon';
 import GitHubIcon from './components/Icons/GitHubIcon';
 
 export default {
-  navRoutes: {
-    home: {
+  navigation: [
+    {
+      protectedOnLog: false,
       link: '/',
       button: 'Главная',
     },
-    saved: {
+    {
+      protectedOnLog: true,
       link: '/saved-news',
       button: 'Сохраненные статьи',
     },
-  },
+  ],
   about: {
     title: 'Об авторе',
     article: [

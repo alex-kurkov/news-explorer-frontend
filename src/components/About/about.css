@@ -19,7 +19,6 @@
   flex-direction: column;
   padding-top: 50px;
   gap: 24px;
-  height: 464px;
 }
 .about__title {
   font-family: 'Roboto Slab', serif;
@@ -60,7 +59,6 @@
   .about__info-wrapper {
     padding-top: 36px;
     gap: 20px;
-    height: 316px;
   }
   .about__title {
     font-size: 30px;
@@ -87,7 +85,6 @@
     margin-top: -20px;
     padding: 0;
     gap: 18px;
-    height: 232px;
   }
 }
 
@@ -105,7 +102,7 @@
     height: 316px;
   }
   .about__info-wrapper {
-    margin-top: -20px;
+    margin-top: 0;
     padding: 0;
     gap: 18px;
     height: 232px;

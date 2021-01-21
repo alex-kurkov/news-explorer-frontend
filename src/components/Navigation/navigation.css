@@ -28,3 +28,20 @@
   text-underline-offset: 30px;
   text-decoration-thickness: 3px;
 }
+
+@media screen and (max-width: 1023px) {
+  .navigation__link_active_true {
+    text-underline-offset: 24px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  .navigation__link_active_true {
+    text-decoration: none;
+  }
+}

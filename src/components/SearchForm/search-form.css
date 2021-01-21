@@ -88,7 +88,7 @@
     background: none;
     gap: 16px;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
   }
   .search-form__input {
     width: 100%;

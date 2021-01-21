@@ -20,3 +20,13 @@
   border: solid 1px #1A1B22;
   color: #1A1B22;
 }
+
+@media screen and (max-width: 767px) {
+  .auth-button {
+    width: 100%;
+    height: 56px;
+    border-radius: 28px;
+    justify-content: center;
+    overflow: hidden;
+  }
+}

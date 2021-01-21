@@ -7,7 +7,7 @@ import ExitIcon from '../Icons/ExitIcon';
 import './auth-button.css';
 
 const AuthButton = ({ loggedIn }) => {
-  const currentPath = useLocation().pathname;
+  const { pathname } = useLocation();
 
   return (
     <>
@@ -16,17 +16,17 @@ const AuthButton = ({ loggedIn }) => {
           <>
             <button
               type="button"
-              className={`auth-button auth-button_color_${currentPath === '/' ? 'white' : 'blueblack'}`}
+              className={`auth-button auth-button_color_${pathname === '/' ? 'white' : 'blueblack'}`}
             >
               Грета
-              <ExitIcon fill={currentPath === '/' ? '#fff' : '#1a1b22'} />
+              <ExitIcon fill={pathname === '/' ? '#fff' : '#1a1b22'} />
             </button>
           </>
         )
         : (
           <button
             type="button"
-            className={`auth-button auth-button_color_${currentPath === '/' ? 'white' : 'blueblack'}`}
+            className={`auth-button auth-button_color_${pathname === '/' ? 'white' : 'blueblack'}`}
           >
             Авторизоваться
           </button>

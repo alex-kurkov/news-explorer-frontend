@@ -1,0 +1,37 @@
+.burger-menu {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .burger-menu {
+    display: block;
+  }
+  .burger-menu__nav-wrapper {
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all .4s ease;
+    padding: 16px 16px 24px 16px;
+  }
+  .burger-menu__nav-wrapper_visible_true {
+    visibility: visible;
+    top: 56px;
+    opacity: 1;
+    height: fit-content;
+  }
+  .burger-menu__nav-wrapper_visible_false {
+    visibility: hidden;
+    top: 0;
+    opacity: 0;
+    height: 0;
+  }
+  .burger-menu__nav-wrapper_bg_dark {
+    background-color: #1a1b22;
+  }
+  .burger-menu__nav-wrapper_bg_white {
+    background-color: #fff;
+  }
+}
