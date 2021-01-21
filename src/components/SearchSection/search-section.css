@@ -34,3 +34,35 @@
   padding: 0;
   letter-spacing: .5px;
 }
+
+@media screen and (max-width: 1023px) {
+  .search-section {
+    height: 400px;
+    padding: 104px 80px 48px 80px;
+  }
+  .search-section__title {
+    max-width: 452px;
+    width: 100%;
+    font-size: 36px;
+    line-height: 40px;
+  }
+  .search-section__subtitle {
+    max-width: 452px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search-section {
+    height: fit-content;
+    padding: 86px 16px 32px 16px;
+  }
+  .search-section__title {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+  .search-section__subtitle {
+    margin-bottom: 120px;
+  }
+}
