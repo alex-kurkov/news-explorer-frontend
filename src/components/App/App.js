@@ -7,6 +7,7 @@ import Loader from '../Loader/Loader';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import NewsCard from '../NewsCard/NewsCard';
 
 import './App.css';
 
@@ -34,6 +35,7 @@ const App = () => {
           loggedIn
         </button>
       </Router>
+      <NewsCard loggedIn={loggedIn} />
       {loaderVisible && <Loader />}
     </div>
   );
