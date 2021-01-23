@@ -39,6 +39,9 @@ const Navigation = ({ loggedIn, setBurgerExpanded }) => {
 
 Navigation.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  setBurgerExpanded: PropTypes.func.isRequired,
+  setBurgerExpanded: PropTypes.func,
+};
+Navigation.defaultProps = {
+  setBurgerExpanded: () => {},
 };
 export default Navigation;
