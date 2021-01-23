@@ -11,10 +11,10 @@ const NewsCard = ({ loggedIn, card }) => {
   const textEl = useRef();
   const ellipsize = () => {
     const el = textEl.current;
-    const words = el.innerHTML.split(' ');
+    const letters = el.innerHTML.split('');
     while (el.scrollHeight > el.offsetHeight) {
-      words.pop();
-      el.innerHTML = `${words.join(' ')}...`;
+      letters.pop();
+      el.innerHTML = `${letters.join('')}...`;
     }
   };
   useEffect(() => {

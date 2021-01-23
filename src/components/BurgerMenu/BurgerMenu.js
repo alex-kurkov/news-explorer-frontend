@@ -31,7 +31,7 @@ const BurgerMenu = ({ loggedIn, setHeaderBgTransparent }) => {
       <div
         className={`burger-menu__nav-wrapper ${wrapperBackgroundClass} ${wrapperVisibleClass}`}
       >
-        <Navigation loggedIn={loggedIn} />
+        <Navigation setBurgerExpanded={setBurgerExpanded} loggedIn={loggedIn} />
         <AuthButton loggedIn={loggedIn} />
       </div>
     </div>

@@ -6,7 +6,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import config from '../../config';
 import './navigation.css';
 
-const Navigation = ({ loggedIn }) => {
+const Navigation = ({ loggedIn, setBurgerExpanded }) => {
   const { navigation } = config;
   const { pathname } = useLocation();
 
@@ -24,6 +24,7 @@ const Navigation = ({ loggedIn }) => {
                 className={`navigation__link navigation__link_color_${pathname === '/' ? 'white' : 'blueblack'}`}
                 activeClassName="navigation__link_active_true"
                 to={link}
+                onClick={() => setBurgerExpanded(false)}
               >
                 {button}
               </NavLink>
@@ -38,5 +39,6 @@ const Navigation = ({ loggedIn }) => {
 
 Navigation.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  setBurgerExpanded: PropTypes.func.isRequired,
 };
 export default Navigation;
