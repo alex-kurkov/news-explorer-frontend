@@ -67,7 +67,7 @@
   list-style-type: none;
   margin: 0 auto 64px auto;
   padding: 0;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 .newscard-list__item {
   display: inline-block;

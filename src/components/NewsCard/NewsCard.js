@@ -9,6 +9,7 @@ const NewsCard = ({ loggedIn, card }) => {
   } = card;
   const [saved, setSaved] = useState(false);
   const textEl = useRef();
+
   const ellipsize = () => {
     const el = textEl.current;
     const letters = el.innerHTML.split('');

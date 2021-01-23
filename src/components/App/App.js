@@ -6,6 +6,7 @@ import {
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import SavedNews from '../SavedNews/SavedNews';
 import articles from '../../temp-articles';
 
 import './App.css';
@@ -14,6 +15,8 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
   const [newsListStatus, setNewsListStatus] = useState(0);
+
+  const saved = articles.innerApi;
 
   const searchNews = (values) => {
     setNewsListStatus(102); // processing
@@ -44,7 +47,7 @@ const App = () => {
             />
           </Route>
           <Route exact path="/saved-news">
-            <p style={{ height: '500px', background: 'gray' }}>saved-news block</p>
+            <SavedNews cards={saved} />
           </Route>
           <Route path="">
             <Redirect to="/" />

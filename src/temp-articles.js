@@ -42,6 +42,7 @@ const outerApi = [
 ];
 const innerApi = [
   {
+    _id: 'weioerg456oieugiuguawegv-2349869-qwe-345tgf',
     keyword: 'история',
     title: 'Лесные огоньки: история одной фотографии',
     text: 'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
@@ -51,6 +52,7 @@ const innerApi = [
     image: 'https://images.unsplash.com/photo-1604256913743-008bc1c585fb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8c21hbGwlMjBzaXplfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
   },
   {
+    _id: 'weioerg45sdvgiuguawegv-2349869-qwe-345tgf',
     keyword: 'история',
     title: 'Статья 2',
     text: 'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
@@ -60,7 +62,8 @@ const innerApi = [
     image: 'https://images.unsplash.com/photo-1604256913743-008bc1c585fb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8c21hbGwlMjBzaXplfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
   },
   {
-    keyword: 'история',
+    _id: 'weioerg456oieugiugdsfvsv-2349869-qwe-345tgf',
+    keyword: 'Фотограф',
     title: 'Статья 3',
     text: 'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
     date: '2 августа, 2019',
@@ -69,7 +72,28 @@ const innerApi = [
     image: 'https://images.unsplash.com/photo-1604256913743-008bc1c585fb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8c21hbGwlMjBzaXplfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
   },
   {
-    keyword: 'история',
+    _id: 'weiaw5343g456qtgiuguawegv-2349869-qwe-345tgf',
+    keyword: 'огоньки',
+    title: 'Статья 4 огоньки: история одной фотографии',
+    text: 'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
+    date: '2 августа, 2019',
+    source: 'Медуза',
+    link: '/',
+    image: 'https://images.unsplash.com/photo-1604256913743-008bc1c585fb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8c21hbGwlMjBzaXplfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+  },
+  {
+    _id: 'weioerg456oieugiuguawegv-sa-qwe-345tgf',
+    keyword: 'суровой',
+    title: 'Статья 4 огоньки: история одной фотографии',
+    text: 'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
+    date: '2 августа, 2019',
+    source: 'Медуза',
+    link: '/',
+    image: 'https://images.unsplash.com/photo-1604256913743-008bc1c585fb?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8c21hbGwlMjBzaXplfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+  },
+  {
+    _id: 'weioerg456oieugiuguawegv-2349869-qwe-345treq',
+    keyword: 'Медуза',
     title: 'Статья 4 огоньки: история одной фотографии',
     text: 'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
     date: '2 августа, 2019',
