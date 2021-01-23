@@ -52,3 +52,23 @@
   visibility: visible;
 }
 
+@media screen and (max-width: 1279px) {
+  .bookmark {
+    top: 8px;
+    right: 8px;
+  }
+  .bookmark_loggedIn_false::after{
+    width: 162px;
+    left: -170px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .bookmark {
+    top: 8px;
+    right: 8px;
+  }
+  .bookmark_loggedIn_false::after{
+    width: 224px;
+    left: -232px;
+  }
+}

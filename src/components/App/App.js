@@ -3,17 +3,32 @@ import React, { useState } from 'react';
 import {
   BrowserRouter as Router, Switch, Redirect, Route,
 } from 'react-router-dom';
-import Loader from '../Loader/Loader';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import NewsCard from '../NewsCard/NewsCard';
+import articles from '../../temp-articles';
 
 import './App.css';
 
 const App = () => {
-  const [loaderVisible, setLoaderVisible] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [foundCards, setFoundCards] = useState([]);
+  const [newsListStatus, setNewsListStatus] = useState(0);
+
+  const searchNews = (values) => {
+    setNewsListStatus(102); // processing
+    setTimeout(() => {
+      // imitation of api request
+      const zeroOne = Math.round(Math.random());
+      if (zeroOne) {
+        setNewsListStatus(200); // ok
+        setFoundCards(articles.outerApi);
+      } else {
+        setNewsListStatus(204); // no content
+        setFoundCards([]);
+      }
+    }, 3000);
+  };
 
   return (
     <div className="app">
@@ -21,10 +36,15 @@ const App = () => {
         <Header loggedIn={loggedIn} />
         <Switch>
           <Route exact path="/">
-            <Main />
+            <Main
+              searchNews={searchNews}
+              loggedIn={loggedIn}
+              cards={foundCards}
+              newsListStatus={newsListStatus}
+            />
           </Route>
           <Route exact path="/saved-news">
-            saved-news block
+            <p style={{ height: '500px', background: 'gray' }}>saved-news block</p>
           </Route>
           <Route path="">
             <Redirect to="/" />
@@ -35,8 +55,6 @@ const App = () => {
           loggedIn
         </button>
       </Router>
-      <NewsCard loggedIn={loggedIn} />
-      {loaderVisible && <Loader />}
     </div>
   );
 };

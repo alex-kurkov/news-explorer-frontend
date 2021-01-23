@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import SearchForm from '../SearchForm/SearchForm';
 import './search-section.css';
 
-const SearchSection = () => (
+const SearchSection = ({ searchNews }) => (
   <section className="search-section">
     <h1 className="search-section__title">Что творится в мире?</h1>
     <p className="search-section__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
-    <SearchForm />
+    <SearchForm searchNews={searchNews} />
   </section>
 );
 
-/* Main.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-}; */
+SearchSection.propTypes = {
+  searchNews: PropTypes.func.isRequired,
+};
 export default SearchSection;

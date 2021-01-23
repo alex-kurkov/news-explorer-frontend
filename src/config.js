@@ -9,11 +9,13 @@ export default {
       protectedOnLog: false,
       link: '/',
       button: 'Главная',
+      id: 'main-id-route',
     },
     {
       protectedOnLog: true,
       link: '/saved-news',
       button: 'Сохраненные статьи',
+      id: 'saved-news-id-route',
     },
   ],
   about: {

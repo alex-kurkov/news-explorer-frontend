@@ -5,7 +5,7 @@ import config from '../../config';
 
 import './search-form.css';
 
-const SearchForm = ({ handleSearchSubmit }) => {
+const SearchForm = ({ searchNews }) => {
   const { button, placeholder } = config.searchForm;
   const [values, setValues] = useState({
     keyword: '',
@@ -17,7 +17,7 @@ const SearchForm = ({ handleSearchSubmit }) => {
   };
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    /*     handleSearchSubmit(values); */
+    searchNews(values);
   };
 
   return (
@@ -45,7 +45,6 @@ const SearchForm = ({ handleSearchSubmit }) => {
 };
 
 SearchForm.propTypes = {
-  // eslint-disable-next-line react/require-default-props
-  handleSearchSubmit: PropTypes.func,
+  searchNews: PropTypes.func.isRequired,
 };
 export default SearchForm;

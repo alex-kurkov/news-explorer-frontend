@@ -1,0 +1,136 @@
+.newscard-list {
+  width: 100%;
+  max-width: 1440px;
+  background-color: #f5f6f7;
+  box-sizing: border-box;
+  padding: 80px 104px;
+  margin: 0 auto;
+}
+.newscard-list__loader-wrapper {
+  display: block;
+  margin-bottom: 24px;
+}
+.newscard-list__pending-msg {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  margin: 0 auto;
+  color: #b6bcbf;
+}
+
+.newscard-list__not-found-icon {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px auto;
+  display: block;
+}
+.newscard-list__not-found-title {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0 auto 16px auto;
+  padding: 0;
+}
+.newscard-list__not-found-msg {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  width: 100%;
+  max-width: 320px;
+  line-height: 24px;
+  text-align: center;
+  margin: 0 auto;
+  color: #b6bcbf;
+  display: block;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.newscard-list__title {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  text-align: left;
+  margin: 0 0 64px 0;
+  padding: 0;
+}
+.newscard-list__container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style-type: none;
+  margin: 0 auto 64px auto;
+  padding: 0;
+  justify-content: space-evenly;
+}
+.newscard-list__item {
+  display: inline-block;
+}
+.newscard-list__button {
+  width: 288px;
+  height: 64px;
+  background-color: #fff;
+  border: none;
+  border-radius: 32px;
+  color: #1a1b22;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+.newscard-list__button:hover {
+  cursor: pointer;
+}
+
+.newscard-list__button_disabled_true {
+  color: #b6bcbf;
+}
+.newscard-list__button_disabled_true:hover {
+  cursor: inherit;
+}
+.newscard-list__button_disabled_true:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1279px) {
+  .newscard-list {
+    padding: 40px;
+  }
+  .newscard-list__title {
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
+  .newscard-list__container{
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .newscard-list__button {
+    width: 240px;
+    height: 56px;
+    border-radius: 28px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .newscard-list {
+    padding: 32px 16px;
+  }
+  .newscard-list__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 24px;
+  }
+  .newscard-list__container{
+    gap: 12px;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .newscard-list__button {
+    width: 288px;
+  }
+}

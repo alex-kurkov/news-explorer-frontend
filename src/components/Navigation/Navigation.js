@@ -13,11 +13,14 @@ const Navigation = ({ loggedIn }) => {
   return (
     <nav className="navigation">
       {
-        navigation.map(({ protectedOnLog, link, button }) => {
+        navigation.map(({
+          protectedOnLog, link, button, id,
+        }) => {
           if (loggedIn || !protectedOnLog) {
             return (
               <NavLink
                 exact
+                key={id}
                 className={`navigation__link navigation__link_color_${pathname === '/' ? 'white' : 'blueblack'}`}
                 activeClassName="navigation__link_active_true"
                 to={link}
@@ -26,7 +29,7 @@ const Navigation = ({ loggedIn }) => {
               </NavLink>
             );
           }
-          return (<></>);
+          return undefined;
         })
       }
     </nav>

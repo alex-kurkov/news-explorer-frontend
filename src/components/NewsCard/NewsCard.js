@@ -1,15 +1,12 @@
-/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Bookmark from '../Icons/Bookmark';
-import CloseIcon from '../Icons/CloseIcon';
-import config from '../../temp-articles';
 import './news-card.css';
 
-const NewsCard = ({ loggedIn }) => {
+const NewsCard = ({ loggedIn, card }) => {
   const {
     source, title, publishedAt, description, urlToImage,
-  } = config.article;
+  } = card;
   const [saved, setSaved] = useState(false);
   const textEl = useRef();
   const ellipsize = () => {
@@ -53,5 +50,6 @@ const NewsCard = ({ loggedIn }) => {
 
 NewsCard.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  card: PropTypes.object.isRequired,
 };
 export default NewsCard;
