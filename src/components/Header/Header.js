@@ -8,7 +8,7 @@ import AuthButton from '../AuthButton/AuthButton';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import './header.css';
 
-const Header = ({ loggedIn }) => {
+const Header = ({ loggedIn, handleAuthBtnClick }) => {
   const currentPath = useLocation().pathname;
   const [headerBgTransparent, setHeaderBgTransparent] = useState();
 
@@ -17,7 +17,7 @@ const Header = ({ loggedIn }) => {
       <AppLogo fill={currentPath === '/' ? '#fff' : '#1a1b22'} />
       <div className="header__nav-wrapper">
         <Navigation loggedIn={loggedIn} />
-        <AuthButton loggedIn={loggedIn} />
+        <AuthButton handleAuthBtnClick={handleAuthBtnClick} loggedIn={loggedIn} />
       </div>
       <BurgerMenu
         loggedIn={loggedIn}
@@ -29,5 +29,6 @@ const Header = ({ loggedIn }) => {
 
 Header.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  handleAuthBtnClick: PropTypes.func.isRequired,
 };
 export default Header;

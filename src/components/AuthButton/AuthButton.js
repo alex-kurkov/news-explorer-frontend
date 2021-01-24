@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import ExitIcon from '../Icons/ExitIcon';
 import './auth-button.css';
 
-const AuthButton = ({ loggedIn }) => {
+const AuthButton = ({ loggedIn, handleAuthBtnClick }) => {
   const { pathname } = useLocation();
 
   return (
@@ -15,6 +15,7 @@ const AuthButton = ({ loggedIn }) => {
         ? (
           <>
             <button
+              onClick={handleAuthBtnClick}
               type="button"
               className={`auth-button auth-button_color_${pathname === '/' ? 'white' : 'blueblack'}`}
             >
@@ -25,6 +26,7 @@ const AuthButton = ({ loggedIn }) => {
         )
         : (
           <button
+            onClick={handleAuthBtnClick}
             type="button"
             className={`auth-button auth-button_color_${pathname === '/' ? 'white' : 'blueblack'}`}
           >
@@ -37,5 +39,6 @@ const AuthButton = ({ loggedIn }) => {
 
 AuthButton.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  handleAuthBtnClick: PropTypes.func.isRequired,
 };
 export default AuthButton;

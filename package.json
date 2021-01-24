@@ -56,7 +56,8 @@
     "rules": {
       "react/jsx-filename-extension": "off",
       "react/forbid-prop-types": "off",
-      "no-underscore-dangle": ["error", { "allow": ["_id"]}]
+      "no-underscore-dangle": ["error", { "allow": ["_id"]}],
+      "click-events-have-key-events": "off"
     }
   },
   "description": "",

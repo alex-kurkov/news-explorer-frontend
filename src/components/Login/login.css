@@ -1,0 +1,121 @@
+.login__form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.login__fieldset {
+  border: none;
+  margin-bottom: 24px;
+}
+.login__title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 30px;
+  display: block;
+  text-align: left;
+  margin-bottom: 22px;
+}
+.login__label {
+  position: relative;
+  margin-bottom: 16px;
+  text-align: left;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #2F71E5;
+  display: block;
+  text-align: left;
+}
+.login__label:last-of-type {
+  margin-bottom: 0;
+}
+.login__input {
+  box-sizing: border-box;
+  cursor: text;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: #b6bcbf 1px solid;
+  padding: 0 32px 0 0;
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 400;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 12px 0;
+  caret-color: #2f71e5;
+}
+.login__input:focus {
+  outline: none;
+  border-bottom: 1px solid #000;
+}
+.login__error-message {
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  color: #F00;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.login__submit-btn {
+  width: 100%;
+  height: 64px;
+  border: none;
+  border-radius: 32px;
+  background-color: #2f71e5;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #fff;
+  letter-spacing: 1px;
+  transition: all .3s ease-in-out;
+  margin-bottom: 32px;
+}
+.login__submit-btn:hover {
+  cursor: pointer;
+}
+.login__submit-btn:focus {
+  box-shadow: #2f71e5e6 0 0 20px;
+  outline: none;
+}
+.login__submit-btn_disabled_true {
+  cursor: inherit;
+  pointer-events: none;
+  background-color: #d1d2d6;
+  color: #b6bcbf;
+}
+.login__submit-btn_disabled_true:focus {
+  box-shadow: none;
+}
+.login__switch {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+.login__switch-link {
+  color: #2f71e5;
+  font-weight: 500;
+}
+.login__switch-link:hover {
+  cursor: pointer;
+  color: #2f71e5;
+  font-weight: 500;
+}
