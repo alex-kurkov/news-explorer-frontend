@@ -42,6 +42,7 @@ const App = () => {
     setLoginOpen(false);
     setTooltipOpen(false);
     setRegisterOpen(false);
+    setRequestError('');
   };
 
   const searchNews = (values) => {
@@ -118,6 +119,9 @@ const App = () => {
         setLoaderVisible(false);
       } else {
         setRequestError('Произошла какая-то ошибка во время запроса');
+        setTimeout(() => {
+          setRequestError('');
+        }, 3000);
         setLoaderVisible(false);
       }
     }, 3000);
@@ -165,7 +169,7 @@ const App = () => {
         <Tooltip
           options={tooltipOptions}
           isOpen={tooltipOpen}
-          onClose={closePopups}
+          onClose={tooltipOptions.action}
         />
         <AppLoader loaderVisible={loaderVisible} />
       </Router>

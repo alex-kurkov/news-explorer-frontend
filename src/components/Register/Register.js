@@ -14,9 +14,27 @@ const Register = ({
     password: '',
     name: '',
   });
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+    name: '',
+  });
   const [anyInputInvalid, setAnyInputInvalid] = useState(true);
   const [showError, setShowError] = useState({});
+
+  const clearValues = () => {
+    setErrors({
+      email: '',
+      password: '',
+      name: '',
+    });
+    setValues({
+      email: '',
+      password: '',
+      name: '',
+    });
+    setAnyInputInvalid(true);
+  };
 
   const checkFormValidity = () => {
     const any = Object
@@ -40,11 +58,24 @@ const Register = ({
   const handleFormSubmit = (e) => {
     e.preventDefault();
     onRegister(values);
+    clearValues();
   };
 
   return (
-    <Overlay onClick={onClose} isOpen={isOpen}>
-      <Modal isOpen={isOpen} onClose={onClose}>
+    <Overlay
+      onClick={() => {
+        onClose();
+        clearValues();
+      }}
+      isOpen={isOpen}
+    >
+      <Modal
+        onClose={() => {
+          onClose();
+          clearValues();
+        }}
+        isOpen={isOpen}
+      >
         <PopupForm
           inputs={[
             {
@@ -52,7 +83,6 @@ const Register = ({
               label: 'Email',
               name: 'email',
               value: values.email || '',
-              onChange: handleInputChange,
               onFocus: () => setShowError({ email: true }),
               onBlur: () => setShowError({}),
               placeholder: 'Введите почту',
@@ -64,7 +94,6 @@ const Register = ({
               label: 'Пароль',
               name: 'password',
               value: values.password || '',
-              onChange: handleInputChange,
               onFocus: () => setShowError({ password: true }),
               onBlur: () => setShowError({}),
               placeholder: 'Введите пароль',
@@ -76,7 +105,6 @@ const Register = ({
               label: 'Имя',
               name: 'name',
               value: values.name || '',
-              onChange: handleInputChange,
               onFocus: () => setShowError({ name: true }),
               onBlur: () => setShowError({}),
               placeholder: 'Введите своё имя',
@@ -89,6 +117,7 @@ const Register = ({
           anyInputInvalid={anyInputInvalid}
           button="Зарегистрироваться"
           requestError={requestError}
+          handleInputChange={handleInputChange}
         />
         <p className="register__switch">
           или

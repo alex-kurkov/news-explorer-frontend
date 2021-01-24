@@ -14,9 +14,24 @@ const Login = ({
     email: '',
     password: '',
   });
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+  });
   const [anyInputInvalid, setAnyInputInvalid] = useState(true);
   const [showError, setShowError] = useState({});
+
+  const clearValues = () => {
+    setErrors({
+      email: '',
+      password: '',
+    });
+    setValues({
+      email: '',
+      password: '',
+    });
+    setAnyInputInvalid(true);
+  };
 
   const checkFormValidity = () => {
     const any = Object
@@ -40,11 +55,24 @@ const Login = ({
   const handleFormSubmit = (e) => {
     e.preventDefault();
     onLogin(values);
+    clearValues();
   };
 
   return (
-    <Overlay onClick={onClose} isOpen={isOpen}>
-      <Modal isOpen={isOpen} onClose={onClose}>
+    <Overlay
+      onClick={() => {
+        onClose();
+        clearValues();
+      }}
+      isOpen={isOpen}
+    >
+      <Modal
+        onClose={() => {
+          onClose();
+          clearValues();
+        }}
+        isOpen={isOpen}
+      >
         <PopupForm
           inputs={[
             {
@@ -52,7 +80,6 @@ const Login = ({
               label: 'Email',
               name: 'email',
               value: values.email || '',
-              onChange: handleInputChange,
               onFocus: () => setShowError({ email: true }),
               onBlur: () => setShowError({}),
               placeholder: 'Введите почту',
@@ -64,7 +91,6 @@ const Login = ({
               label: 'Пароль',
               name: 'password',
               value: values.password || '',
-              onChange: handleInputChange,
               onFocus: () => setShowError({ password: true }),
               onBlur: () => setShowError({}),
               placeholder: 'Введите пароль',
@@ -77,6 +103,7 @@ const Login = ({
           anyInputInvalid={anyInputInvalid}
           button="Войти"
           requestError={requestError}
+          handleInputChange={handleInputChange}
         />
 
         <p className="login__switch">

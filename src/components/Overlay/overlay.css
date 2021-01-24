@@ -23,7 +23,7 @@
   visibility: hidden;
   opacity: 0;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 424px) {
   .overlay {
     align-items: flex-end;
     justify-content: center;

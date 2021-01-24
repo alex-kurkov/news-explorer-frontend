@@ -9,8 +9,9 @@ const PopupForm = ({
   anyInputInvalid,
   button,
   requestError,
+  handleInputChange,
 }) => (
-  <form className="popup-form" onSubmit={onSubmit}>
+  <form onChange={handleInputChange} className="popup-form" onSubmit={onSubmit}>
     <fieldset className="popup-form__fieldset">
       <legend className="popup-form__title">{legend}</legend>
 
@@ -19,7 +20,6 @@ const PopupForm = ({
         label,
         name,
         value,
-        onChange,
         onFocus,
         onBlur,
         placeholder,
@@ -34,7 +34,7 @@ const PopupForm = ({
             type={type}
             id={name}
             name={name}
-            onChange={onChange}
+            onChange={() => {}}
             onFocus={onFocus}
             onBlur={onBlur}
             placeholder={placeholder}
@@ -47,7 +47,7 @@ const PopupForm = ({
 
     </fieldset>
     <div className="popup-form__button-wrapper">
-      <button type="submit" className={`popup-form__submit-btn popup-form__submit-btn_disabled_${anyInputInvalid}`}>
+      <button disabled={anyInputInvalid} type="submit" className={`popup-form__submit-btn popup-form__submit-btn_disabled_${anyInputInvalid}`}>
         {button}
       </button>
       {requestError && (
@@ -63,12 +63,14 @@ PopupForm.propTypes = {
   legend: PropTypes.string,
   button: PropTypes.string,
   requestError: PropTypes.string,
-  anyInputInvalid: PropTypes.bool.isRequired,
+  anyInputInvalid: PropTypes.bool,
+  handleInputChange: PropTypes.func.isRequired,
 };
 PopupForm.defaultProps = {
   requestError: '',
   legend: 'Форма',
   button: 'OK',
+  anyInputInvalid: true,
 };
 
 export default PopupForm;
