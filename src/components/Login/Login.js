@@ -85,6 +85,7 @@ const Login = ({
               placeholder: 'Введите почту',
               error: errors.email,
               showError: showError.email,
+              id: 'login.popup.email.input',
             },
             {
               type: 'text',
@@ -96,6 +97,7 @@ const Login = ({
               placeholder: 'Введите пароль',
               error: errors.password,
               showError: showError.password,
+              id: 'login.popup.password.input',
             },
           ]}
           onSubmit={handleFormSubmit}

@@ -25,8 +25,9 @@ const PopupForm = ({
         placeholder,
         error,
         showError,
+        id,
       }) => (
-        <label key={`input-${name}`} htmlFor={name} className="popup-form__label">
+        <label key={id} htmlFor={name} className="popup-form__label">
           {label}
           <input
             className="popup-form__input"

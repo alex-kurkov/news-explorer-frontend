@@ -88,6 +88,7 @@ const Register = ({
               placeholder: 'Введите почту',
               error: errors.email,
               showError: showError.email,
+              id: 'register.popup.email.input',
             },
             {
               type: 'text',
@@ -99,6 +100,7 @@ const Register = ({
               placeholder: 'Введите пароль',
               error: errors.password,
               showError: showError.password,
+              id: 'register.popup.password.input',
             },
             {
               type: 'text',
@@ -110,6 +112,7 @@ const Register = ({
               placeholder: 'Введите своё имя',
               error: errors.name,
               showError: showError.name,
+              id: 'register.popup.name.input',
             },
           ]}
           onSubmit={handleFormSubmit}

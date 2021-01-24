@@ -24,7 +24,7 @@
     visibility: visible;
     top: 56px;
     opacity: 1;
-    height: fit-content;
+    height: min-content;
   }
   .burger-menu__nav-wrapper_visible_false {
     visibility: hidden;
