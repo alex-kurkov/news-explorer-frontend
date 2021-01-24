@@ -1,4 +1,5 @@
 .footer {
+  width: 100%;
   max-width: 1440px;
   box-sizing: border-box;
   min-height: 80px;
@@ -45,14 +46,11 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 1023px) {
   .footer {
     min-height: 64px;
     padding: 20px 40px;
   }
-}
-
-@media screen and (max-width: 1023px) {
   .footer__navBar {
     gap: 24px;
   }

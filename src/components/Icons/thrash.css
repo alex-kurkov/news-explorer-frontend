@@ -1,32 +1,19 @@
-.bookmark {
+.thrash {
   width: 40px;
   height: 40px;
   position: absolute;
   top: 24px;
   right: 24px;
 }
-.bookmark__path {
-  stroke: #b6bcbf;
-  fill: transparent;
-  transition: all .3s ease-in-out;
+.thrash__path {
+  fill: #b6bcbf;
+  transition: fill .3s ease-in-out;
 }
-
-.bookmark_loggedIn_true:hover .bookmark__path {
-  stroke: #1a1b22;
-  fill: transparent;
+.thrash:hover .thrash__path {
+  fill: #1a1b22;
 }
-
-.bookmark_saved_true .bookmark__path {
-  stroke: #2F71E5;
-  fill: #2F71E5;
-}
-
-.bookmark_saved_true:hover .bookmark__path {
-  stroke: #2F71E5;
-  fill: #2F71E5;
-}
-.bookmark_loggedIn_false::after{
-  content: 'Войдите, чтобы сохранять статьи';
+.thrash::after {
+  content: 'Убрать из сохранённых';
   font-family: 'Roboto', sans-serif;
   background: #fff;
   border: none;
@@ -45,25 +32,24 @@
   opacity: 0;
   visibility: hidden;
 }
-
-.bookmark_loggedIn_false:hover::after {
+.thrash:hover::after {
   transition: all .3s ease-in-out;
   opacity: 1;
   visibility: visible;
 }
 
 @media screen and (max-width: 1279px) {
-  .bookmark {
+  .thrash {
     top: 8px;
     right: 8px;
   }
-  .bookmark_loggedIn_false::after{
+  .thrash:hover::after {
     width: 162px;
     left: -170px;
   }
 }
 @media screen and (max-width: 767px) {
-  .bookmark_loggedIn_false::after{
+  .thrash:hover::after {
     width: 224px;
     left: -232px;
   }

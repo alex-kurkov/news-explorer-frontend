@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Bookmark from '../Icons/Bookmark';
+import Thrash from '../Icons/Thrash';
 import './news-card.css';
 
-const NewsCard = ({ loggedIn, card }) => {
-  const {
-    source, title, publishedAt, description, urlToImage,
-  } = card;
+const NewsCard = ({
+  loggedIn, location, keyword, title, text, date, source, link, image,
+}) => {
   const [saved, setSaved] = useState(false);
   const textEl = useRef();
 
@@ -35,13 +36,20 @@ const NewsCard = ({ loggedIn, card }) => {
 
   return (
     <article className="news-card">
-      <Bookmark saved={saved} loggedIn={loggedIn} onClick={handleBookmarkClick} />
-      <img className="news-card__image" src={urlToImage} alt="изображение к новости" />
+      {location === 'news' && <Bookmark saved={saved} loggedIn={loggedIn} onClick={handleBookmarkClick} />}
+      {location === 'saved'
+        && (
+          <>
+            <div className="news-card__keyword">{keyword}</div>
+            <Thrash onClick={() => {}} />
+          </>
+        )}
+      <img className="news-card__image" src={image} alt="изображение к новости" />
       <div className="news-card__info-wrapper">
-        <span className="news-card__date">{publishedAt}</span>
+        <span className="news-card__date">{date}</span>
         <div className="news-card__info">
           <h3 className="news-card__title">{title}</h3>
-          <p ref={textEl} className="news-card__text">{description}</p>
+          <p ref={textEl} className="news-card__text">{text}</p>
         </div>
         <span className="news-card__source">{source.name}</span>
       </div>
@@ -51,6 +59,13 @@ const NewsCard = ({ loggedIn, card }) => {
 
 NewsCard.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  card: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 export default NewsCard;

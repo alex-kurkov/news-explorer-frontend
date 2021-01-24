@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SearchSection from '../SearchSection/SearchSection';
 import About from '../About/About';
-import NewsCardList from '../NewsCardList/NewsCardList';
+import News from '../News/News';
 import './main.css';
 
 const Main = ({
@@ -13,7 +13,7 @@ const Main = ({
     <SearchSection searchNews={searchNews} />
     { !!newsListStatus
       && (
-      <NewsCardList
+      <News
         newsListStatus={newsListStatus}
         loggedIn={loggedIn}
         cards={cards}

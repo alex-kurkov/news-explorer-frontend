@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import {
   BrowserRouter as Router, Switch, Redirect, Route,
@@ -6,8 +5,10 @@ import {
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNews from '../SavedNews/SavedNews';
 import articles from '../../temp-articles';
+import newsConverter from '../../utils/newsApi-converter';
 
 import './App.css';
 
@@ -19,13 +20,13 @@ const App = () => {
   const saved = articles.innerApi;
 
   const searchNews = (values) => {
+    const { keyword } = values;
     setNewsListStatus(102); // processing
     setTimeout(() => {
       // imitation of api request
-      const zeroOne = Math.round(Math.random());
-      if (zeroOne) {
+      if (keyword) {
         setNewsListStatus(200); // ok
-        setFoundCards(articles.outerApi);
+        setFoundCards(newsConverter(articles.outerApi, keyword));
       } else {
         setNewsListStatus(204); // no content
         setFoundCards([]);
@@ -47,6 +48,7 @@ const App = () => {
             />
           </Route>
           <Route exact path="/saved-news">
+            <SavedNewsHeader cards={saved} />
             <SavedNews cards={saved} />
           </Route>
           <Route path="">

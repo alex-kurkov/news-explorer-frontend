@@ -63,7 +63,7 @@ export default {
       },
       {
         id: 'footer-social-facebook-id',
-        link: 'https://praktikum.yandex.ru',
+        link: 'https://www.facebook.com/',
         icon: (<FacebookIcon />),
         target: '_blank',
       },
