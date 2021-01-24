@@ -20,6 +20,7 @@ const Header = ({ loggedIn, handleAuthBtnClick }) => {
         <AuthButton handleAuthBtnClick={handleAuthBtnClick} loggedIn={loggedIn} />
       </div>
       <BurgerMenu
+        handleAuthBtnClick={handleAuthBtnClick}
         loggedIn={loggedIn}
         setHeaderBgTransparent={setHeaderBgTransparent}
       />

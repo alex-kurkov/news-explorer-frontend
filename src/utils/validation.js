@@ -29,7 +29,7 @@ export default (values) => {
     } else if (!value) {
       errors.name = 'Обязательное поле';
     } else {
-      errors.name = 'Имя должно быть не меньше 2 и не больше 30 символов';
+      errors.name = 'Не меньше 2 и не больше 30 символов';
     }
   };
   const validateUrl = (value, key) => {

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Overlay from '../Overlay/Overlay';
 import Modal from '../Modal/Modal';
+import PopupForm from '../PopupForm/PopupForm';
 import validate from '../../utils/validation';
 import './register.css';
 
-const Login = ({
-  onRegister, isOpen, onClose, switchToLogin,
+const Register = ({
+  onRegister, isOpen, onClose, switchToLogin, requestError,
 }) => {
-  /* const currentUser = React.useContext(CurrentUserContext); */
   const [errors, setErrors] = useState({
     email: '',
     password: '',
@@ -44,91 +44,73 @@ const Login = ({
 
   return (
     <Overlay onClick={onClose} isOpen={isOpen}>
-      <Modal isOpen={isOpen}>
-        {/*       <CloseButton title="Закрыть" onClick={onClose} /> */}
-        <form className="register__form" onSubmit={handleFormSubmit}>
-          <fieldset className="register__fieldset">
-            <legend className="register__title">Регистрация</legend>
-            <label htmlFor="name" className="register__label">
-              Email
-              <input
-                className="register__input"
-                value={values.email}
-                type="textarea"
-                rows="2"
-                id="email"
-                name="email"
-                onChange={handleInputChange}
-                onFocus={() => setShowError({ email: true })}
-                onBlur={() => setShowError({})}
-                placeholder="Введите почту"
-                noValidate
-              />
-              {errors.email && showError.email && <span className="register__error-message">{errors.email}</span>}
-            </label>
-
-            <label htmlFor="password" className="register__label">
-              Пароль
-              <input
-                className="register__input"
-                value={values.password}
-                type="text"
-                name="password"
-                id="password"
-                onChange={handleInputChange}
-                onFocus={() => setShowError({ password: true })}
-                onBlur={() => setShowError({})}
-                placeholder="Введите пароль"
-                noValidate
-              />
-              {errors.password && showError.password && <span className="register__error-message">{errors.password}</span>}
-            </label>
-            <label htmlFor="password" className="register__label">
-              Имя
-              <input
-                className="register__input"
-                value={values.name}
-                type="text"
-                name="name"
-                id="name"
-                onChange={handleInputChange}
-                onFocus={() => setShowError({ name: true })}
-                onBlur={() => setShowError({})}
-                placeholder="Введите своё имя"
-                noValidate
-              />
-              {errors.name && showError.name && <span className="register__error-message">{errors.name}</span>}
-            </label>
-          </fieldset>
-          <div>
-            <button type="submit" className={`register__submit-btn register__submit-btn_disabled_${anyInputInvalid}`}>
-              Войти
-            </button>
-            <p className="register__switch">
-              или
-              <span
-                className="register__switch-link"
-                onClick={switchToLogin}
-                onKeyPress
-                role="button"
-                tabIndex={0}
-              >
-                {' '}
-                Войти
-              </span>
-            </p>
-          </div>
-        </form>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <PopupForm
+          inputs={[
+            {
+              type: 'text',
+              label: 'Email',
+              name: 'email',
+              value: values.email || '',
+              onChange: handleInputChange,
+              onFocus: () => setShowError({ email: true }),
+              onBlur: () => setShowError({}),
+              placeholder: 'Введите почту',
+              error: errors.email,
+              showError: showError.email,
+            },
+            {
+              type: 'text',
+              label: 'Пароль',
+              name: 'password',
+              value: values.password || '',
+              onChange: handleInputChange,
+              onFocus: () => setShowError({ password: true }),
+              onBlur: () => setShowError({}),
+              placeholder: 'Введите пароль',
+              error: errors.password,
+              showError: showError.password,
+            },
+            {
+              type: 'text',
+              label: 'Имя',
+              name: 'name',
+              value: values.name || '',
+              onChange: handleInputChange,
+              onFocus: () => setShowError({ name: true }),
+              onBlur: () => setShowError({}),
+              placeholder: 'Введите своё имя',
+              error: errors.name,
+              showError: showError.name,
+            },
+          ]}
+          onSubmit={handleFormSubmit}
+          legend="Регистрация"
+          anyInputInvalid={anyInputInvalid}
+          button="Зарегистрироваться"
+          requestError={requestError}
+        />
+        <p className="register__switch">
+          или
+          <span
+            className="register__switch-link"
+            onClick={switchToLogin}
+          >
+            {' '}
+            Войти
+          </span>
+        </p>
       </Modal>
     </Overlay>
   );
 };
 
-Login.propTypes = {
+Register.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onRegister: PropTypes.func.isRequired,
   switchToLogin: PropTypes.func.isRequired,
+  requestError: PropTypes.string.isRequired,
 };
 
-export default Login;
+export default Register;

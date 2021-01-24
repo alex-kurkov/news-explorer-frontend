@@ -7,7 +7,7 @@ import ExpandIcon from '../Icons/ExpandIcon';
 import CloseIcon from '../Icons/CloseIcon';
 import './burger-menu.css';
 
-const BurgerMenu = ({ loggedIn, setHeaderBgTransparent }) => {
+const BurgerMenu = ({ loggedIn, handleAuthBtnClick, setHeaderBgTransparent }) => {
   const [burgerExpanded, setBurgerExpanded] = useState(false);
   const { pathname } = useLocation();
 
@@ -24,15 +24,17 @@ const BurgerMenu = ({ loggedIn, setHeaderBgTransparent }) => {
   }, [burgerExpanded, pathname]);
   return (
     <div className="burger-menu">
-      {burgerExpanded
-        ? <CloseIcon fill={iconsFill} onClick={() => setBurgerExpanded(!burgerExpanded)} />
-        : <ExpandIcon fill={iconsFill} onClick={() => setBurgerExpanded(!burgerExpanded)} />}
+      <div className="burger-menu__icon-wrapper">
+        {burgerExpanded
+          ? <CloseIcon fill={iconsFill} onClick={() => setBurgerExpanded(!burgerExpanded)} />
+          : <ExpandIcon fill={iconsFill} onClick={() => setBurgerExpanded(!burgerExpanded)} />}
+      </div>
 
       <div
         className={`burger-menu__nav-wrapper ${wrapperBackgroundClass} ${wrapperVisibleClass}`}
       >
         <Navigation setBurgerExpanded={setBurgerExpanded} loggedIn={loggedIn} />
-        <AuthButton loggedIn={loggedIn} />
+        <AuthButton handleAuthBtnClick={handleAuthBtnClick} loggedIn={loggedIn} />
       </div>
     </div>
   );
@@ -41,5 +43,6 @@ const BurgerMenu = ({ loggedIn, setHeaderBgTransparent }) => {
 BurgerMenu.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   setHeaderBgTransparent: PropTypes.func.isRequired,
+  handleAuthBtnClick: PropTypes.func.isRequired,
 };
 export default BurgerMenu;

@@ -1,0 +1,24 @@
+.tooltip__message {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: left;
+  margin: 0 0 14px 0;
+}
+.tooltip__action-link{
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  color: #2f71e5;
+  font-weight: 500;
+}
+.tooltip__action-link:hover {
+  cursor: pointer;
+  font-weight: 500;
+}

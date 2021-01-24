@@ -67,15 +67,12 @@ const SavedNewsHeader = ({ cards }) => {
       <h2 className="saved-news-header__title">
         {title}
       </h2>
-      {keywords.length
-      && (
       <p className="saved-news-header__keywords">
         <span>{keywordsMsgIntro}</span>
         <span className="saved-news-header__keywords_emphasized_true">{keywordsMsgWords}</span>
         <span>{keywordsMsgConjunction}</span>
         <span className="saved-news-header__keywords_emphasized_true">{keywordsMsgTail}</span>
       </p>
-      )}
     </section>
   );
 };

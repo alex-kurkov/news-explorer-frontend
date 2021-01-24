@@ -5,7 +5,8 @@ import { Route, Redirect } from 'react-router-dom';
 const ProtectedRoute = ({ component: Component, ...props }) => (
   <Route>
     {
-      () => (props.loggedIn ? <Component {...props} /> : <Redirect to="./authorize" />)
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      () => (props.loggedIn ? <Component {...props} /> : <Redirect to="/" />)
     }
   </Route>
 );

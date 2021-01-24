@@ -18,9 +18,6 @@ const Overlay = ({ isOpen, onClick, children }) => {
     <div
       className={`overlay overlay_visible_${isOpen}`}
       onClick={overlayClick}
-      onKeyPress
-      role="button"
-      tabIndex={0}
     >
       {children}
     </div>
