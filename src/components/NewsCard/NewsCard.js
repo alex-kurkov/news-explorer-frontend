@@ -6,7 +6,7 @@ import Thrash from '../Icons/Thrash';
 import './news-card.css';
 
 const NewsCard = ({
-  loggedIn, location, keyword, title, text, date, source, link, image,
+  loggedIn, location, keyword, title, text, date, source, link, image, _id,
 }) => {
   const [saved, setSaved] = useState(false);
   const textEl = useRef();
@@ -35,7 +35,7 @@ const NewsCard = ({
   };
 
   return (
-    <article className="news-card">
+    <article key={_id} className="news-card">
       {location === 'news' && <Bookmark saved={saved} loggedIn={loggedIn} onClick={handleBookmarkClick} />}
       {location === 'saved'
         && (
@@ -67,5 +67,6 @@ NewsCard.propTypes = {
   source: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
 };
 export default NewsCard;

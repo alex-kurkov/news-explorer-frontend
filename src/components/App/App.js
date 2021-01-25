@@ -33,6 +33,9 @@ const App = () => {
   const [loaderVisible, setLoaderVisible] = useState(false);
 
   const history = useHistory();
+
+  useEffect(() => () => setFoundCards([]), []);
+
   useEffect(() => {
     if (!loggedIn) return (<Redirect to="/" />);
     return undefined;
@@ -169,7 +172,7 @@ const App = () => {
         <Tooltip
           options={tooltipOptions}
           isOpen={tooltipOpen}
-          onClose={tooltipOptions.action}
+          onClose={() => setTooltipOpen(false)}
         />
         <AppLoader loaderVisible={loaderVisible} />
       </Router>

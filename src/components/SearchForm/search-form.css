@@ -82,7 +82,7 @@
 @media screen and (max-width: 767px) {
   .search-form {
     width: 100%;
-    height: fit-content;
+    height: min-content;
     display: flex;
     flex-direction: column;
     background: none;

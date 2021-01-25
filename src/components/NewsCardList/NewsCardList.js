@@ -11,6 +11,7 @@ const NewsCardList = ({ cards, loggedIn, location }) => (
       }) => (
         <li key={_id} className="newscard-list__item">
           <NewsCard
+            _id
             location={location}
             loggedIn={loggedIn}
             keyword={keyword}

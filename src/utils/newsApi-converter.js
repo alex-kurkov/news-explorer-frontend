@@ -11,7 +11,7 @@ const convertArticle = (article, keyword = '') => {
     source, title, description, url, urlToImage, publishedAt,
   } = article;
   const converted = {
-    _id: `${url}${publishedAt}`,
+    _id: `${url}${publishedAt}${Date.now()}`,
     keyword,
     title,
     text: description || '',

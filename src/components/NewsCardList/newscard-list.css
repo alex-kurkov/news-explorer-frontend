@@ -4,9 +4,9 @@
   grid-template-rows: 1fr;
   gap: 16px;
   list-style-type: none;
-  margin: 0 0 64px 0;
+  margin-bottom: 64px;
   padding: 0;
-  grid-auto-rows: 1fr;
+  grid-auto-rows: auto;
   background-color: #f5f6f7;
 }
 
