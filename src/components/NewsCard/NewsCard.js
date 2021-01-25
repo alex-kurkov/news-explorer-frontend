@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Bookmark from '../Icons/Bookmark';
@@ -44,15 +43,17 @@ const NewsCard = ({
             <Thrash onClick={() => {}} />
           </>
         )}
-      <img className="news-card__image" src={image} alt="изображение к новости" />
-      <div className="news-card__info-wrapper">
-        <span className="news-card__date">{date}</span>
-        <div className="news-card__info">
-          <h3 className="news-card__title">{title}</h3>
-          <p ref={textEl} className="news-card__text">{text}</p>
+      <a className="news-card__link" href={link} target="_blank" rel="noopener noreferrer">
+        <img className="news-card__image" src={image} alt="изображение к новости" />
+        <div className="news-card__info-wrapper">
+          <span className="news-card__date">{date}</span>
+          <div className="news-card__info">
+            <h3 className="news-card__title">{title}</h3>
+            <p ref={textEl} className="news-card__text">{text}</p>
+          </div>
+          <span className="news-card__source">{source.name}</span>
         </div>
-        <span className="news-card__source">{source.name}</span>
-      </div>
+      </a>
     </article>
   );
 };
