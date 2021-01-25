@@ -112,11 +112,11 @@ const App = () => {
         setTooltipOptions({
           message: 'Вы успешно вошли!',
           action: () => {
-            setLoggedIn(true);
             closePopups();
           },
           btn: 'Продолжить',
         });
+        setLoggedIn(true);
         setLoginOpen(false);
         setTooltipOpen(true);
         setLoaderVisible(false);

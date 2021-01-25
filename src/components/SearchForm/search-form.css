@@ -33,6 +33,7 @@
 }
 .search-form__input:focus {
   outline: none;
+  box-shadow: white 0 0 10px;
 }
 .search-form__button {
   width: 168px;
@@ -51,6 +52,10 @@
   background-color: #347EFF;
   cursor: pointer;
   transition: all .3s ease;
+}
+.search-form__button:focus {
+  outline: none;
+  box-shadow: #2f71e5 0 0 10px;
 }
 .search-form__button:active {
   background-color: #2A65CC;
