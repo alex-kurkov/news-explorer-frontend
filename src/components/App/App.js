@@ -49,6 +49,7 @@ const App = () => {
   };
 
   const searchNews = (values) => {
+    setFoundCards([]);
     const { keyword } = values;
     setNewsListStatus(102); // processing
     setTimeout(() => {
@@ -58,7 +59,6 @@ const App = () => {
         setFoundCards(newsConverter(articles.outerApi, keyword));
       } else {
         setNewsListStatus(204); // no content
-        setFoundCards([]);
       }
     }, 3000);
   };
