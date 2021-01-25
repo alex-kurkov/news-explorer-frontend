@@ -6,7 +6,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, .8);
+  /* backdrop-filter: blur(3px); */
   transition: all .5s ease;
   z-index: 300;
 }
