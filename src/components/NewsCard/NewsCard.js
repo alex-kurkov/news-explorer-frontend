@@ -8,15 +8,25 @@ const NewsCard = ({
   loggedIn, location, keyword, title, text, date, source, link, image, _id,
 }) => {
   const [saved, setSaved] = useState(false);
+  const [ellipsizedText, setEllipsizedText] = useState('');
   const textEl = useRef();
 
   const ellipsize = () => {
     const el = textEl.current;
-    const letters = el.innerHTML.split('');
-    while (el.scrollHeight > el.offsetHeight) {
-      letters.pop();
-      el.innerHTML = `${letters.join('')}...`;
-    }
+    const lineHeight = 22;
+    const averageCharWidth = 9;
+    const { width, height } = el.getBoundingClientRect();
+    const availRows = Math.floor(height / lineHeight);
+    const availCharsPerLine = Math.floor(width / averageCharWidth);
+    const availChars = availCharsPerLine * availRows;
+    const ellipsized = text
+      ? text
+        .split('')
+        .slice(0, availChars)
+        .join('')
+        .concat('...')
+      : '';
+    setEllipsizedText(ellipsized);
   };
 
   useEffect(() => {
@@ -53,7 +63,7 @@ const NewsCard = ({
           <span className="news-card__date">{date}</span>
           <div className="news-card__info">
             <h3 className="news-card__title">{title}</h3>
-            <p ref={textEl} className="news-card__text">{text}</p>
+            <p ref={textEl} className="news-card__text">{ellipsizedText}</p>
           </div>
           <span className="news-card__source">{source}</span>
         </div>

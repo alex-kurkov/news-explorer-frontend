@@ -33,6 +33,7 @@ const SearchForm = ({ searchNews }) => {
         placeholder={placeholder}
         onChange={handleInputChange}
         required
+        autoComplete="off"
       />
       <button
         className="search-form__button"
