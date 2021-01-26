@@ -32,7 +32,7 @@ const SearchForm = ({ searchNews }) => {
         value={values.keyword}
         placeholder={placeholder}
         onChange={handleInputChange}
-        noValidate
+        required
       />
       <button
         className="search-form__button"

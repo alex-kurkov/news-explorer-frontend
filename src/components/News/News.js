@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -7,32 +8,29 @@ import NotFoundIcon from '../Icons/NotFoundIcon';
 import './news.css';
 
 const News = ({ loggedIn, cards, newsListStatus }) => {
-  const [activeCards, setActiveCards] = useState([]);
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [lines, setLines] = useState(0);
+  const [itemsShown, setItemsShown] = useState(3);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const addCards = () => {
-    setLines(lines + 1);
+    setItemsShown(itemsShown + 3);
+  };
+
+  const checkButtonState = () => {
+    if (!cards.length) return;
+    if (cards.length > itemsShown) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
   };
 
   useEffect(() => {
-    if (newsListStatus === 200) {
-      setLines(lines + 1);
-    } else {
-      setLines(0);
-    }
-  }, [newsListStatus]);
+    checkButtonState();
+  }, []);
 
   useEffect(() => {
-    setActiveCards(cards.slice(0, (3 * lines)));
-  }, [lines]);
-
-  useEffect(() => {
-    if (activeCards.length < cards.length) {
-      return setButtonDisabled(false);
-    }
-    return setButtonDisabled(true);
-  }, [activeCards]);
+    checkButtonState();
+  }, [itemsShown]);
 
   return (
     <section className="news">
@@ -67,7 +65,7 @@ const News = ({ loggedIn, cards, newsListStatus }) => {
         && (
         <div>
           <h2 className="news__title">Результаты поиска</h2>
-          <NewsCardList location="news" cards={activeCards} loggedIn={loggedIn} />
+          <NewsCardList itemsShown={itemsShown} location="news" cards={cards} loggedIn={loggedIn} />
           <button
             type="button"
             className={`news__button news__button_disabled_${buttonDisabled}`}

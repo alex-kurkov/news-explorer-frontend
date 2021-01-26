@@ -18,9 +18,13 @@ const NewsCard = ({
       el.innerHTML = `${letters.join('')}...`;
     }
   };
+
   useEffect(() => {
     ellipsize();
+    window.addEventListener('resize', ellipsize);
+    return () => window.removeEventListener('resize', ellipsize);
   }, []);
+
   useEffect(() => {
     if (!loggedIn) {
       setSaved(false);
@@ -51,7 +55,7 @@ const NewsCard = ({
             <h3 className="news-card__title">{title}</h3>
             <p ref={textEl} className="news-card__text">{text}</p>
           </div>
-          <span className="news-card__source">{source.name}</span>
+          <span className="news-card__source">{source}</span>
         </div>
       </a>
     </article>

@@ -55,8 +55,8 @@ const App = () => {
     setTimeout(() => {
       // imitation of api request
       if (keyword) {
-        setNewsListStatus(200); // ok
         setFoundCards(newsConverter(articles.outerApi, keyword));
+        setNewsListStatus(200); // ok)
       } else {
         setNewsListStatus(204); // no content
       }

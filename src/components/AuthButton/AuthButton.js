@@ -14,14 +14,13 @@ const AuthButton = ({ loggedIn, handleAuthBtnClick }) => {
       {loggedIn
         ? (
           <>
-            <button
+            <div
               onClick={handleAuthBtnClick}
-              type="button"
               className={`auth-button auth-button_color_${pathname === '/' ? 'white' : 'blueblack'}`}
             >
               Грета
               <ExitIcon fill={pathname === '/' ? '#fff' : '#1a1b22'} />
-            </button>
+            </div>
           </>
         )
         : (
