@@ -1,0 +1,32 @@
+.auth-button {
+  width: fit-content;
+  height: 48px;
+  padding: 0 12px;
+  border-radius: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  background-color: transparent;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.auth-button_color_white {
+  border: solid 1px #fff;
+  color: #fff;
+}
+.auth-button_color_blueblack {
+  border: solid 1px #1A1B22;
+  color: #1A1B22;
+}
+
+@media screen and (max-width: 767px) {
+  .auth-button {
+    width: 100%;
+    height: 56px;
+    border-radius: 28px;
+    justify-content: center;
+    overflow: hidden;
+  }
+}

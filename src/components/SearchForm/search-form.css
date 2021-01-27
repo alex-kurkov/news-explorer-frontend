@@ -1,0 +1,112 @@
+.search-form {
+  width: 608px;
+  height: 64px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+  background-color: #fff;
+  border-radius: 32px;
+  line-height: 24px;
+}
+.search-form__input {
+  width: 440px;
+  height: 100%;
+  background-color: transparent;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  border-radius: 32px;
+  border: none;
+  padding: 8px 32px;
+  box-sizing: border-box;
+  caret-color: #2f71e5;
+}
+.search-form__input::placeholder {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #B6BCBF;
+}
+.search-form__input:focus {
+  outline: none;
+  box-shadow: white 0 0 10px;
+}
+.search-form__button {
+  width: 168px;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #fff;
+  background-color: #2f71e5;
+  border-radius: 32px;
+  border: none;
+  box-sizing: border-box;
+}
+.search-form__button:hover {
+  background-color: #347EFF;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+.search-form__button:focus {
+  outline: none;
+  box-shadow: #2f71e5 0 0 10px;
+}
+.search-form__button:active {
+  background-color: #2A65CC;
+  transition: all .3s ease;
+}
+
+@media screen and (max-width: 1023px) {
+  .search-form {
+    max-width: 452px;
+    height: 56px;
+    border-radius: 28px;
+    line-height: 24px;
+  }
+  .search-form__input {
+    width: 292px;
+    border-radius: 28px;
+    padding: 16px 24px;
+  }
+  .search-form__input::placeholder {
+    font-size: 16px;
+    line-height: 22px;
+    color: #B6BCBF;
+  }
+  .search-form__button {
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search-form {
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    background: none;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .search-form__input {
+    width: 100%;
+    height: 56px;
+    background-color: #fff;
+    border-radius: 28px;
+    border: none;
+    padding: 8px 24px;
+  }
+
+  .search-form__button {
+    width: 100%;
+    height: 56px;
+    border-radius: 28px;
+  }
+}

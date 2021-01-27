@@ -1,0 +1,124 @@
+.news {
+  width: 100%;
+  max-width: 1440px;
+  background-color: #f5f6f7;
+  box-sizing: border-box;
+  padding: 80px 104px;
+  margin: 0 auto;
+}
+.news__loader-wrapper {
+  display: block;
+  margin-bottom: 24px;
+}
+.news__pending-msg {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  margin: 0 auto;
+  color: #b6bcbf;
+}
+
+.news__not-found-icon {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 24px auto;
+  display: block;
+}
+.news__not-found-title {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0 auto 16px auto;
+  padding: 0;
+}
+.news__not-found-msg {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  width: 100%;
+  max-width: 320px;
+  line-height: 24px;
+  text-align: center;
+  margin: 0 auto;
+  color: #b6bcbf;
+  display: block;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.news__title {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  text-align: left;
+  margin: 0 0 64px 0;
+  padding: 0;
+}
+.news__button {
+  width: 288px;
+  height: 64px;
+  background-color: #fff;
+  border: none;
+  border-radius: 32px;
+  color: #1a1b22;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+.news__button:hover {
+  cursor: pointer;
+}
+
+.news__button_disabled_true {
+  color: #b6bcbf;
+  pointer-events: none;
+}
+.news__button_disabled_true:hover {
+  cursor: inherit;
+}
+.news__button_disabled_true:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1023px) {
+  .news {
+    padding: 40px;
+  }
+  .news__title {
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
+  .news__container{
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .news__button {
+    width: 240px;
+    height: 56px;
+    border-radius: 28px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .news {
+    padding: 32px 16px;
+  }
+  .news__title {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 24px;
+  }
+  .news__container{
+    gap: 12px;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  .news__button {
+    width: 288px;
+  }
+}

@@ -1,0 +1,13 @@
+/test/
+
+/public
+
+/build
+
+/node_modules
+
+*.json
+
+*.md 
+
+*.lock

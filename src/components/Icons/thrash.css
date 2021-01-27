@@ -1,0 +1,56 @@
+.thrash {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+.thrash__path {
+  fill: #b6bcbf;
+  transition: fill .3s ease-in-out;
+}
+.thrash:hover .thrash__path {
+  fill: #1a1b22;
+}
+.thrash::after {
+  content: 'Убрать из сохранённых';
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 10px;
+  width: 182px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: -186px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+}
+.thrash:hover::after {
+  transition: all .3s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media screen and (max-width: 1279px) {
+  .thrash {
+    top: 8px;
+    right: 8px;
+  }
+  .thrash:hover::after {
+    width: 162px;
+    left: -170px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .thrash:hover::after {
+    width: 224px;
+    left: -232px;
+  }
+}

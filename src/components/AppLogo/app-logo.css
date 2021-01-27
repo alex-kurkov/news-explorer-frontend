@@ -1,0 +1,9 @@
+.app-logo {
+  display: block;
+  box-sizing: border-box;
+  width: 137px;
+  height: 21px;
+}
+.app-logo__path:hover {
+  cursor: pointer;
+}

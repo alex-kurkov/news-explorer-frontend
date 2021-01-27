@@ -1,0 +1,20 @@
+.register__switch {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
+.register__switch-link {
+  color: #2f71e5;
+  font-weight: 500;
+}
+.register__switch-link:hover {
+  cursor: pointer;
+  color: #2f71e5;
+  font-weight: 500;
+}
