@@ -70,20 +70,18 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
+  opacity: 1;
+  visibility: visible;
+  transition: all .3s ease-in-out;
 }
 .news__button:hover {
   cursor: pointer;
 }
 
 .news__button_disabled_true {
-  color: #b6bcbf;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-}
-.news__button_disabled_true:hover {
-  cursor: inherit;
-}
-.news__button_disabled_true:focus {
-  outline: none;
 }
 
 @media screen and (max-width: 1023px) {

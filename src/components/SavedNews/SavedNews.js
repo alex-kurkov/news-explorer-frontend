@@ -5,7 +5,7 @@ import './saved-news.css';
 
 const SavedNews = ({ cards }) => (
   <main className="saved-news">
-    <NewsCardList cards={cards} loggedIn location="saved" />
+    <NewsCardList itemsShown={cards.length} cards={cards} loggedIn location="saved" />
   </main>
 );
 

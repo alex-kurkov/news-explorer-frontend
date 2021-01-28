@@ -1,14 +1,13 @@
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import CurrentUserContext from '../../context/CurrentUserContext';
 import ExitIcon from '../Icons/ExitIcon';
 import './auth-button.css';
 
 const AuthButton = ({ loggedIn, handleAuthBtnClick }) => {
   const { pathname } = useLocation();
-
+  const currentUser = React.useContext(CurrentUserContext);
   return (
     <>
       {loggedIn
@@ -18,7 +17,7 @@ const AuthButton = ({ loggedIn, handleAuthBtnClick }) => {
               onClick={handleAuthBtnClick}
               className={`auth-button auth-button_color_${pathname === '/' ? 'white' : 'blueblack'}`}
             >
-              Грета
+              {currentUser.name || 'Пользователь'}
               <ExitIcon fill={pathname === '/' ? '#fff' : '#1a1b22'} />
             </div>
           </>

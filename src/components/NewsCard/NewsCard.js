@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Bookmark from '../Icons/Bookmark';
 import Thrash from '../Icons/Thrash';
+import defaultImage from '../../images/default-news-image.png';
 import './news-card.css';
 
 const NewsCard = ({
@@ -58,7 +59,7 @@ const NewsCard = ({
           </>
         )}
       <a className="news-card__link" href={link} target="_blank" rel="noopener noreferrer">
-        <img className="news-card__image" src={image} alt="изображение к новости" />
+        <img className="news-card__image" src={image || defaultImage} alt="изображение к новости" />
         <div className="news-card__info-wrapper">
           <span className="news-card__date">{date}</span>
           <div className="news-card__info">

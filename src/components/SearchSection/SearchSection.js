@@ -2,12 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SearchForm from '../SearchForm/SearchForm';
+import config from '../../config';
 import './search-section.css';
 
 const SearchSection = ({ searchNews }) => (
   <section className="search-section">
-    <h1 className="search-section__title">Что творится в мире?</h1>
-    <p className="search-section__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+    <h1 className="search-section__title">{config.search.title}</h1>
+    <p className="search-section__subtitle">{config.search.subtitle}</p>
     <SearchForm searchNews={searchNews} />
   </section>
 );
