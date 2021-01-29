@@ -4,15 +4,18 @@ import NewsCard from '../NewsCard/NewsCard';
 import './newscard-list.css';
 
 const NewsCardList = ({
-  itemsShown, cards, loggedIn, location,
+  itemsShown, cards, loggedIn, location, handleArticleSave, handleArticleDelete,
 }) => (
   <ul className="newscard-list">
     {
       cards.slice(0, itemsShown).map(({
-        _id, keyword, title, text, date, source, link, image,
+        _id, keyword, title, text, date, source, link, image, isSaved,
       }) => (
         <li key={_id} className="newscard-list__item">
           <NewsCard
+            isSaved={isSaved}
+            handleArticleDelete={handleArticleDelete}
+            handleArticleSave={handleArticleSave}
             _id={_id}
             location={location}
             loggedIn={loggedIn}
@@ -35,5 +38,7 @@ NewsCardList.propTypes = {
   cards: PropTypes.array.isRequired,
   location: PropTypes.string.isRequired,
   itemsShown: PropTypes.number.isRequired,
+  handleArticleSave: PropTypes.func.isRequired,
+  handleArticleDelete: PropTypes.func.isRequired,
 };
 export default NewsCardList;

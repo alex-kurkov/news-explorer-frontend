@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
-  BrowserRouter as Router, Switch, Redirect, Route, useHistory,
+  BrowserRouter as Router, Switch, Redirect, Route,
 } from 'react-router-dom';
 import CurrentUserContext from '../../context/CurrentUserContext';
 import Header from '../Header/Header';
@@ -13,8 +13,15 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Tooltip from '../Tooltip/Tooltip';
 import AppLoader from '../AppLoader/AppLoader';
-import articlesTemp from '../../temp-articles';
 import getNews from '../../utils/NewsApi';
+import {
+  getArticles,
+  postArticle,
+  deleteArticle,
+  getUserData,
+  register,
+  login,
+} from '../../utils/MainApi';
 import newsConverter from '../../utils/newsApi-converter';
 import './App.css';
 
@@ -31,20 +38,64 @@ const App = () => {
     btn: '',
     action: () => {},
   });
-  const [saved, setSaved] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
   const [requestError, setRequestError] = useState('');
   const [loaderVisible, setLoaderVisible] = useState(false);
 
-  const history = useHistory();
+  const checkUser = (jwt) => {
+    getUserData(jwt)
+      .then(((res) => {
+        setLoggedIn(true);
+        setCurrentUser(res);
+      }))
+      .catch((e) => {
+        setRequestError(e.message);
+      });
+  };
 
   useEffect(() => {
-    const cards = JSON.parse(localStorage.getItem('articles')) || [];
-    setFoundCards(cards);
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      setLoaderVisible(true);
+      checkUser(jwt);
+      setLoaderVisible(false);
+    }
   }, []);
 
   useEffect(() => {
-    if (foundCards.length) setNewsListStatus(200);
-  }, [foundCards]);
+    const jwt = localStorage.getItem('jwt');
+    if (loggedIn && jwt) {
+      setLoaderVisible(true);
+      getArticles(jwt)
+        .then((articles) => {
+          setSavedCards(articles);
+        })
+        .catch((e) => {
+          setRequestError(e.message);
+        })
+        .finally(() => {
+          setLoaderVisible(false);
+        });
+    }
+  }, [loggedIn]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('im here: check saved');
+    const checkSaved = foundCards.map((foundCard) => {
+      const savedLinks = savedCards.map(({ link }) => link);
+      const isSaved = savedLinks.includes(foundCard.link);
+      return { ...foundCard, isSaved };
+    });
+    setFoundCards(checkSaved);
+    localStorage.setItem('articles', JSON.stringify(checkSaved));
+  }, [loggedIn, savedCards]);
+
+  useEffect(() => {
+    const cards = JSON.parse(localStorage.getItem('articles')) || [];
+    if (cards.length) setNewsListStatus(200);
+    setFoundCards(cards);
+  }, []);
 
   useEffect(() => {
     if (!loggedIn) return (<Redirect to="/" />);
@@ -85,7 +136,7 @@ const App = () => {
         message: 'Вы хотите выйти?',
         action: () => {
           setLoggedIn(false);
-          setSaved([]);
+          setSavedCards([]);
           closePopups();
         },
         btn: 'Да, выхожу!',
@@ -104,46 +155,75 @@ const App = () => {
     setRegisterOpen(false);
     setLoginOpen(true);
   };
-  const handleRegister = (values) => {
-    setRequestError('');
-    setTooltipOptions({
-      message: 'Пользователь успешно зарегистрирован!',
-      action: () => {
-        closePopups();
-        setLoginOpen(true);
-      },
-      btn: 'Войти',
-    });
-    setRegisterOpen(false);
-    setTooltipOpen(true);
-  };
-  const handleLogin = (values) => {
-    setRequestError('');
+  const handleRegister = (data) => {
     setLoaderVisible(true);
-    setTimeout(() => {
-      // imitation of api request
-      const oneZero = Math.round(Math.random());
-      if (oneZero) {
-        setSaved(articlesTemp.innerApi);
+    setRequestError('');
+    register(data)
+      .then((res) => {
         setTooltipOptions({
-          message: 'Вы успешно вошли!',
+          message: 'Пользователь успешно зарегистрирован!',
           action: () => {
             closePopups();
+            setLoginOpen(true);
           },
-          btn: 'Продолжить',
+          btn: 'Войти',
         });
-        setLoggedIn(true);
-        setLoginOpen(false);
+        closePopups();
         setTooltipOpen(true);
-        setLoaderVisible(false);
-      } else {
-        setRequestError('Произошла какая-то ошибка во время запроса');
-        setTimeout(() => {
-          setRequestError('');
-        }, 3000);
-        setLoaderVisible(false);
-      }
-    }, 3000);
+      })
+      .catch((e) => {
+        setRequestError(e.message);
+      })
+      .finally(() => setLoaderVisible(false));
+  };
+
+  const handleLogin = (data) => {
+    setRequestError('');
+    setLoaderVisible(true);
+    login(data)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem('jwt', res.token);
+          setLoggedIn(true);
+          closePopups();
+        }
+      })
+      .catch((e) => {
+        setRequestError(e.message);
+      })
+      .finally(() => setLoaderVisible(false));
+  };
+
+  const handleArticleSave = (
+    card,
+    setInnerId,
+  ) => {
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) return;
+    setLoaderVisible(true);
+    postArticle(card, jwt)
+      .then((newCard) => {
+        setSavedCards([{ isSaved: true, ...newCard }, ...savedCards]);
+        setInnerId(newCard._id);
+      })
+      .catch(() => {})
+      .finally(() => setLoaderVisible(false));
+  };
+  const handleArticleDelete = (
+    _id,
+    setInnerId,
+  ) => {
+    const jwt = localStorage.getItem('jwt');
+    if (!jwt) return;
+    setLoaderVisible(true);
+    deleteArticle(_id, jwt)
+      .then((deleted) => {
+        const newCards = savedCards.filter((i) => i._id !== deleted.data._id);
+        setInnerId(null);
+        setSavedCards(newCards);
+      })
+      .catch(() => {})
+      .finally(() => setLoaderVisible(false));
   };
 
   return (
@@ -155,6 +235,8 @@ const App = () => {
           <Switch>
             <Route exact path="/">
               <Main
+                handleArticleDelete={handleArticleDelete}
+                handleArticleSave={handleArticleSave}
                 searchNews={searchNews}
                 loggedIn={loggedIn}
                 cards={foundCards}
@@ -165,7 +247,8 @@ const App = () => {
               exact
               path="/saved-news"
               loggedIn={loggedIn}
-              cards={saved}
+              handleArticleDelete={handleArticleDelete}
+              cards={savedCards}
               component={SavedPage}
             />
             <Route path="">

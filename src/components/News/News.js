@@ -8,7 +8,9 @@ import NotFoundIcon from '../Icons/NotFoundIcon';
 import config from '../../config';
 import './news.css';
 
-const News = ({ loggedIn, cards, newsListStatus }) => {
+const News = ({
+  loggedIn, cards, newsListStatus, handleArticleSave, handleArticleDelete,
+}) => {
   const [itemsShown, setItemsShown] = useState(3);
   const [buttonDisabled, setButtonDisabled] = useState(false);
 
@@ -76,7 +78,14 @@ const News = ({ loggedIn, cards, newsListStatus }) => {
         && (
         <div>
           <h2 className="news__title">{texts.success.title}</h2>
-          <NewsCardList itemsShown={itemsShown} location="news" cards={cards} loggedIn={loggedIn} />
+          <NewsCardList
+            itemsShown={itemsShown}
+            location="news"
+            cards={cards}
+            loggedIn={loggedIn}
+            handleArticleDelete={handleArticleDelete}
+            handleArticleSave={handleArticleSave}
+          />
           <button
             type="button"
             className={`news__button news__button_disabled_${buttonDisabled}`}
@@ -95,5 +104,7 @@ News.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   cards: PropTypes.array.isRequired,
   newsListStatus: PropTypes.number.isRequired,
+  handleArticleSave: PropTypes.func.isRequired,
+  handleArticleDelete: PropTypes.func.isRequired,
 };
 export default News;

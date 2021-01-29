@@ -1,6 +1,6 @@
 const {
   REACT_APP_NEWSAPIKEY = 'f315736efbb6474fb516c2f9fe755a61',
-  REACT_APP_BASEURLPROXY = 'https://nomoreparties.co/news/v2/top-headlines',
+  REACT_APP_NEWSURLPROXY = 'https://nomoreparties.co/news/v2/top-headlines',
 } = process.env;
 
 const convertDateToQueryStr = (dateObj) => {
@@ -33,7 +33,7 @@ const getNews = (
     keywordParam,
     keyParam,
   ].join('&')}`;
-  return fetch(`${REACT_APP_BASEURLPROXY}${queriesString}`, {
+  return fetch(`${REACT_APP_NEWSURLPROXY}${queriesString}`, {
     headers: {
       /*       'X-Api-Key': REACT_APP_NEWSAPIKEY, */
     },

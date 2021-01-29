@@ -19,6 +19,7 @@ const convertArticle = (article, keyword = '') => {
     source: source.name || '',
     link: url,
     image: urlToImage || defaultImg,
+    isSaved: false,
   };
   return converted;
 };

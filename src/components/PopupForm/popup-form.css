@@ -101,11 +101,12 @@
 }
 .popup-form__button-wrapper {
   position: relative;
+  margin-top: 8px;
 }
 .popup-form__error {
   position: absolute;
   display: block;
-  top: -16px;
+  top: -28px;
   left: 0;
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 400;
