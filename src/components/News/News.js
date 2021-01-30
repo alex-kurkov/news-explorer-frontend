@@ -9,7 +9,8 @@ import config from '../../config';
 import './news.css';
 
 const News = ({
-  loggedIn, cards, newsListStatus, handleArticleSave, handleArticleDelete,
+  loggedIn, cards, newsListStatus,
+  handleArticleSave, handleArticleDelete, handleBookmarkUnsavedClick,
 }) => {
   const [itemsShown, setItemsShown] = useState(3);
   const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -79,6 +80,7 @@ const News = ({
         <div>
           <h2 className="news__title">{texts.success.title}</h2>
           <NewsCardList
+            handleBookmarkUnsavedClick={handleBookmarkUnsavedClick}
             itemsShown={itemsShown}
             location="news"
             cards={cards}
@@ -106,5 +108,6 @@ News.propTypes = {
   newsListStatus: PropTypes.number.isRequired,
   handleArticleSave: PropTypes.func.isRequired,
   handleArticleDelete: PropTypes.func.isRequired,
+  handleBookmarkUnsavedClick: PropTypes.func.isRequired,
 };
 export default News;

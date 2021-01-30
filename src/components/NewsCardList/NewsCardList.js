@@ -4,7 +4,8 @@ import NewsCard from '../NewsCard/NewsCard';
 import './newscard-list.css';
 
 const NewsCardList = ({
-  itemsShown, cards, loggedIn, location, handleArticleSave, handleArticleDelete,
+  itemsShown, cards, loggedIn, location,
+  handleArticleSave, handleArticleDelete, handleBookmarkUnsavedClick,
 }) => (
   <ul className="newscard-list">
     {
@@ -13,6 +14,7 @@ const NewsCardList = ({
       }) => (
         <li key={_id} className="newscard-list__item">
           <NewsCard
+            handleBookmarkUnsavedClick={handleBookmarkUnsavedClick}
             isSaved={isSaved}
             handleArticleDelete={handleArticleDelete}
             handleArticleSave={handleArticleSave}
@@ -40,5 +42,9 @@ NewsCardList.propTypes = {
   itemsShown: PropTypes.number.isRequired,
   handleArticleSave: PropTypes.func.isRequired,
   handleArticleDelete: PropTypes.func.isRequired,
+  handleBookmarkUnsavedClick: PropTypes.func,
+};
+NewsCardList.defaultProps = {
+  handleBookmarkUnsavedClick: () => {},
 };
 export default NewsCardList;

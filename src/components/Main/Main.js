@@ -7,7 +7,9 @@ import News from '../News/News';
 import './main.css';
 
 const Main = ({
-  searchNews, loggedIn, cards, newsListStatus, handleArticleDelete, handleArticleSave,
+  searchNews, loggedIn, cards,
+  newsListStatus, handleArticleDelete,
+  handleArticleSave, handleBookmarkUnsavedClick,
 }) => (
   <main className="main">
     <SearchSection searchNews={searchNews} />
@@ -19,6 +21,7 @@ const Main = ({
         loggedIn={loggedIn}
         cards={cards}
         handleArticleSave={handleArticleSave}
+        handleBookmarkUnsavedClick={handleBookmarkUnsavedClick}
       />
       )}
     <About />
@@ -32,5 +35,6 @@ Main.propTypes = {
   searchNews: PropTypes.func.isRequired,
   handleArticleSave: PropTypes.func.isRequired,
   handleArticleDelete: PropTypes.func.isRequired,
+  handleBookmarkUnsavedClick: PropTypes.func.isRequired,
 };
 export default Main;

@@ -29,6 +29,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [foundCards, setFoundCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
   const [newsListStatus, setNewsListStatus] = useState(0);
   const [loginOpen, setLoginOpen] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
@@ -38,7 +39,6 @@ const App = () => {
     btn: '',
     action: () => {},
   });
-  const [savedCards, setSavedCards] = useState([]);
   const [requestError, setRequestError] = useState('');
   const [loaderVisible, setLoaderVisible] = useState(false);
 
@@ -52,6 +52,24 @@ const App = () => {
         setRequestError(e.message);
       });
   };
+  const checkSavedCards = () => {
+    const savedLinks = savedCards.map(({ link }) => link);
+    const mappedCards = foundCards.map((card) => {
+      const isSaved = savedLinks.includes(card.link);
+      const saved = isSaved
+        ? savedCards.find((item) => item.link === card.link)
+        : card;
+      return { ...saved, isSaved };
+    });
+    setFoundCards(mappedCards);
+    localStorage.setItem('articles', JSON.stringify(mappedCards));
+  };
+  const clearSavedOnLogout = () => {
+    setSavedCards([]);
+    const mappedCards = foundCards.map((card) => ({ ...card, isSaved: false }));
+    setFoundCards(mappedCards);
+    localStorage.setItem('articles', JSON.stringify(mappedCards));
+  };
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
@@ -61,8 +79,16 @@ const App = () => {
       setLoaderVisible(false);
     }
   }, []);
+  useEffect(() => {
+    const cards = JSON.parse(localStorage.getItem('articles')) || [];
+    if (cards.length) {
+      setFoundCards(cards);
+      setNewsListStatus(200);
+    }
+  }, []);
 
   useEffect(() => {
+    if (!loggedIn) (<Redirect to="/" />);
     const jwt = localStorage.getItem('jwt');
     if (loggedIn && jwt) {
       setLoaderVisible(true);
@@ -80,27 +106,8 @@ const App = () => {
   }, [loggedIn]);
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('im here: check saved');
-    const checkSaved = foundCards.map((foundCard) => {
-      const savedLinks = savedCards.map(({ link }) => link);
-      const isSaved = savedLinks.includes(foundCard.link);
-      return { ...foundCard, isSaved };
-    });
-    setFoundCards(checkSaved);
-    localStorage.setItem('articles', JSON.stringify(checkSaved));
-  }, [loggedIn, savedCards]);
-
-  useEffect(() => {
-    const cards = JSON.parse(localStorage.getItem('articles')) || [];
-    if (cards.length) setNewsListStatus(200);
-    setFoundCards(cards);
-  }, []);
-
-  useEffect(() => {
-    if (!loggedIn) return (<Redirect to="/" />);
-    return undefined;
-  }, [loggedIn]);
+    if (savedCards.length) checkSavedCards();
+  }, [savedCards, loggedIn]);
 
   const closePopups = () => {
     setLoginOpen(false);
@@ -111,7 +118,6 @@ const App = () => {
 
   const searchNews = (values) => {
     setFoundCards([]);
-    localStorage.clear();
     const { keyword } = values;
     setNewsListStatus(102); // processing
     getNews(keyword)
@@ -119,34 +125,18 @@ const App = () => {
         if (totalResults) {
           const convertedArticles = newsConverter(articles, keyword);
           setFoundCards(convertedArticles);
-          setNewsListStatus(200);
           localStorage.setItem('articles', JSON.stringify(convertedArticles));
+          setSavedCards(savedCards);
+          setNewsListStatus(200); // ok
         } else {
-          setNewsListStatus(204);
+          setNewsListStatus(204); // no content
         }
       })
       .catch(() => {
-        setNewsListStatus(520);
+        setNewsListStatus(520); // some error
       });
   };
 
-  const handleAuthBtnClick = () => {
-    if (loggedIn) {
-      setTooltipOptions({
-        message: 'Вы хотите выйти?',
-        action: () => {
-          setLoggedIn(false);
-          setSavedCards([]);
-          closePopups();
-        },
-        btn: 'Да, выхожу!',
-      });
-      setTooltipOpen(true);
-    } else {
-      setLoginOpen(true);
-    }
-    return undefined;
-  };
   const switchToRegister = () => {
     setLoginOpen(false);
     setRegisterOpen(true);
@@ -194,9 +184,27 @@ const App = () => {
       .finally(() => setLoaderVisible(false));
   };
 
+  const handleAuthBtnClick = () => {
+    if (loggedIn) {
+      setTooltipOptions({
+        message: 'Вы хотите выйти?',
+        action: () => {
+          localStorage.removeItem('jwt');
+          setCurrentUser({});
+          setLoggedIn(false);
+          clearSavedOnLogout();
+          closePopups();
+        },
+        btn: 'Да, выхожу!',
+      });
+      setTooltipOpen(true);
+    } else {
+      setLoginOpen(true);
+    }
+    return undefined;
+  };
   const handleArticleSave = (
     card,
-    setInnerId,
   ) => {
     const jwt = localStorage.getItem('jwt');
     if (!jwt) return;
@@ -204,14 +212,12 @@ const App = () => {
     postArticle(card, jwt)
       .then((newCard) => {
         setSavedCards([{ isSaved: true, ...newCard }, ...savedCards]);
-        setInnerId(newCard._id);
       })
       .catch(() => {})
       .finally(() => setLoaderVisible(false));
   };
   const handleArticleDelete = (
     _id,
-    setInnerId,
   ) => {
     const jwt = localStorage.getItem('jwt');
     if (!jwt) return;
@@ -219,7 +225,6 @@ const App = () => {
     deleteArticle(_id, jwt)
       .then((deleted) => {
         const newCards = savedCards.filter((i) => i._id !== deleted.data._id);
-        setInnerId(null);
         setSavedCards(newCards);
       })
       .catch(() => {})
@@ -241,6 +246,7 @@ const App = () => {
                 loggedIn={loggedIn}
                 cards={foundCards}
                 newsListStatus={newsListStatus}
+                handleBookmarkUnsavedClick={() => setLoginOpen(true)}
               />
             </Route>
             <ProtectedRoute

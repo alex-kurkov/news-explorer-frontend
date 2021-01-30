@@ -19,8 +19,8 @@ const NewsCard = ({
   handleArticleSave,
   handleArticleDelete,
   isSaved,
+  handleBookmarkUnsavedClick,
 }) => {
-  const [innerId, setInnerId] = useState(null);
   const [ellipsizedText, setEllipsizedText] = useState('');
   const textEl = useRef();
 
@@ -47,34 +47,24 @@ const NewsCard = ({
     window.addEventListener('resize', ellipsize);
     return () => window.removeEventListener('resize', ellipsize);
   }, []);
-  useEffect(() => {
-    if (location === 'saved') {
-      setInnerId(_id);
-    } else {
-      setInnerId(null);
-    }
-  }, []);
 
   const handleBookmarkClick = () => {
     if (!loggedIn) {
-      // eslint-disable-next-line no-console
-      return console.log('open auth popup');
+      handleBookmarkUnsavedClick();
     }
     if (!isSaved) {
       handleArticleSave(
         {
           keyword, title, text, date, source, link, image, _id,
         },
-        setInnerId,
       );
     } else {
-      const id = innerId || _id;
-      handleArticleDelete(id, setInnerId);
+      handleArticleDelete(_id);
     }
     return undefined;
   };
   const handleTrashClick = () => {
-    handleArticleDelete(_id, setInnerId);
+    handleArticleDelete(_id);
   };
 
   return (
@@ -122,5 +112,6 @@ NewsCard.propTypes = {
   _id: PropTypes.string.isRequired,
   handleArticleSave: PropTypes.func.isRequired,
   handleArticleDelete: PropTypes.func.isRequired,
+  handleBookmarkUnsavedClick: PropTypes.func.isRequired,
 };
 export default NewsCard;
