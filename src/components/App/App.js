@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router, Switch, Redirect, Route,
@@ -90,8 +89,6 @@ const App = () => {
   }, []);
   useEffect(() => {
     const cards = JSON.parse(localStorage.getItem('articles')) || [];
-    // eslint-disable-next-line no-console
-    console.log('initial from localStorage', cards);
     if (cards.length) {
       setFoundCards(cards);
     }
@@ -115,7 +112,8 @@ const App = () => {
       setLoaderVisible(true);
       getArticles(jwt)
         .then((articles) => {
-          setSavedCards(articles);
+          const mappedCards = articles.map((article) => ({ isSaved: true, ...article }));
+          setSavedCards(mappedCards);
         })
         .catch((e) => {
           setRequestError(e.message);
@@ -179,7 +177,7 @@ const App = () => {
     register(data)
       .then((res) => {
         setTooltipOptions({
-          message: 'Пользователь успешно зарегистрирован!',
+          message: `Пользователь ${res.data.name} успешно зарегистрирован!`,
           action: () => {
             closePopups();
             setLoginOpen(true);
@@ -264,9 +262,9 @@ const App = () => {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
+      <Router>
 
-      <div className="app">
-        <Router>
+        <div className="app">
           <Header loggedIn={loggedIn} handleAuthBtnClick={handleAuthBtnClick} />
           <Switch>
             <Route exact path="/">
@@ -313,8 +311,8 @@ const App = () => {
             onClose={() => setTooltipOpen(false)}
           />
           <AppLoader loaderVisible={loaderVisible} />
-        </Router>
-      </div>
+        </div>
+      </Router>
     </CurrentUserContext.Provider>
   );
 };

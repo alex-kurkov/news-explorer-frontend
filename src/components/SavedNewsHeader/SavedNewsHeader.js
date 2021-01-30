@@ -10,30 +10,29 @@ const SavedNewsHeader = ({ cards }) => {
   const [keywordsMsgWords, setKeywordsMsgWords] = useState('');
   const [keywordsMsgConjunction, setKeywordsMsgConjunction] = useState('');
   const [keywordsMsgTail, setKeywordsMsgTail] = useState('');
-  const [user, setUserName] = useState('Пользователь');
-  const [numberOfCards, setNumberOfCards] = useState(0);
 
   const currentUser = useContext(CurrentUserContext);
+  const user = currentUser.name;
+  const numberOfCards = cards.length;
 
   useEffect(() => {
-    setUserName(currentUser.name);
-    setNumberOfCards(cards.length);
-  }, []);
-  useEffect(() => {
-    setUserName(currentUser.name);
-  }, [currentUser]);
-  useEffect(() => {
-    setNumberOfCards(cards.length);
-  }, [cards]);
-
-  useEffect(() => {
-    const keywordsFiltered = cards
+    const keywordsCounted = cards
       .map(({ keyword }) => keyword)
-      .reduce(((acc, item) => {
-        if (acc.includes(item)) return acc;
-        return [...acc, item];
-      }), []);
-    setKeywords(keywordsFiltered);
+      .reduce((acc, item) => {
+        const keys = Object.keys(acc);
+        if (keys.includes(item)) {
+          acc[item] += 1;
+        } else {
+          acc[item] = 1;
+        }
+        return acc;
+      }, {});
+    const keywordsSorted = Object
+      .entries(keywordsCounted)
+      .sort((a, b) => b[1] - a[1])
+      .map((item) => item[0]);
+
+    setKeywords(keywordsSorted);
   }, [cards, user]);
 
   useEffect(() => {
@@ -63,8 +62,8 @@ const SavedNewsHeader = ({ cards }) => {
       const words = keywords.slice(0, 2).join(', ');
       setKeywordsMsgIntro('По ключевым словам: ');
       setKeywordsMsgWords(words);
-      setKeywordsMsgConjunction(' и');
-      setKeywordsMsgTail(' 1-му другому`');
+      setKeywordsMsgConjunction(' и ');
+      setKeywordsMsgTail(`${keywords[2]}`);
     }
     if (num > 3) {
       const words = keywords.slice(0, 2).join(', ');
