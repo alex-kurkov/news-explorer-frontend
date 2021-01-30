@@ -2,12 +2,25 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Bookmark from '../Icons/Bookmark';
 import Thrash from '../Icons/Thrash';
+import defaultImage from '../../images/default-news-image.png';
 import './news-card.css';
 
 const NewsCard = ({
-  loggedIn, location, keyword, title, text, date, source, link, image, _id,
+  loggedIn,
+  location,
+  keyword,
+  title,
+  text,
+  date,
+  source,
+  link,
+  image,
+  _id,
+  handleArticleSave,
+  handleArticleDelete,
+  isSaved,
+  handleBookmarkUnsavedClick,
 }) => {
-  const [saved, setSaved] = useState(false);
   const [ellipsizedText, setEllipsizedText] = useState('');
   const textEl = useRef();
 
@@ -35,30 +48,43 @@ const NewsCard = ({
     return () => window.removeEventListener('resize', ellipsize);
   }, []);
 
-  useEffect(() => {
-    if (!loggedIn) {
-      setSaved(false);
-    }
-  }, [loggedIn]);
-
   const handleBookmarkClick = () => {
-    if (loggedIn) {
-      setSaved(!saved);
+    if (!loggedIn) {
+      handleBookmarkUnsavedClick();
     }
+    if (!isSaved) {
+      handleArticleSave(
+        {
+          keyword, title, text, date, source, link, image, _id,
+        },
+      );
+    } else {
+      handleArticleDelete(_id);
+    }
+    return undefined;
+  };
+  const handleTrashClick = () => {
+    handleArticleDelete(_id);
   };
 
   return (
     <article key={_id} className="news-card">
-      {location === 'news' && <Bookmark saved={saved} loggedIn={loggedIn} onClick={handleBookmarkClick} />}
+      {location === 'news' && (
+      <Bookmark
+        saved={isSaved}
+        loggedIn={loggedIn}
+        onClick={handleBookmarkClick}
+      />
+      )}
       {location === 'saved'
         && (
           <>
             <div className="news-card__keyword">{keyword}</div>
-            <Thrash onClick={() => {}} />
+            <Thrash onClick={handleTrashClick} />
           </>
         )}
       <a className="news-card__link" href={link} target="_blank" rel="noopener noreferrer">
-        <img className="news-card__image" src={image} alt="изображение к новости" />
+        <img className="news-card__image" src={image || defaultImage} alt="изображение к новости" />
         <div className="news-card__info-wrapper">
           <span className="news-card__date">{date}</span>
           <div className="news-card__info">
@@ -74,6 +100,7 @@ const NewsCard = ({
 
 NewsCard.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
+  isSaved: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   keyword: PropTypes.string.isRequired,
@@ -83,5 +110,8 @@ NewsCard.propTypes = {
   link: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   _id: PropTypes.string.isRequired,
+  handleArticleSave: PropTypes.func.isRequired,
+  handleArticleDelete: PropTypes.func.isRequired,
+  handleBookmarkUnsavedClick: PropTypes.func.isRequired,
 };
 export default NewsCard;
