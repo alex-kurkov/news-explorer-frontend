@@ -21,7 +21,7 @@ const News = ({
   };
 
   const checkButtonState = () => {
-    if (!cards.length) return;
+    if (!cards.length) setButtonDisabled(true);
     if (cards.length > itemsShown) {
       setButtonDisabled(false);
     } else {
@@ -35,7 +35,7 @@ const News = ({
 
   useEffect(() => {
     checkButtonState();
-  }, [itemsShown]);
+  }, [itemsShown, cards]);
 
   return (
     <section className="news">

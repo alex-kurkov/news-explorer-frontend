@@ -65,7 +65,6 @@ const App = () => {
     localStorage.setItem('articles', JSON.stringify(mappedCards));
   };
   const clearSavedOnLogout = () => {
-    setSavedCards([]);
     const mappedCards = foundCards.map((card) => ({ ...card, isSaved: false }));
     setFoundCards(mappedCards);
     localStorage.setItem('articles', JSON.stringify(mappedCards));
@@ -83,9 +82,11 @@ const App = () => {
     const cards = JSON.parse(localStorage.getItem('articles')) || [];
     if (cards.length) {
       setFoundCards(cards);
-      setNewsListStatus(200);
     }
   }, []);
+  useEffect(() => {
+    if (foundCards.length) setNewsListStatus(200);
+  }, [foundCards]);
 
   useEffect(() => {
     if (!loggedIn) (<Redirect to="/" />);
@@ -106,7 +107,11 @@ const App = () => {
   }, [loggedIn]);
 
   useEffect(() => {
-    if (savedCards.length) checkSavedCards();
+    if (savedCards.length && loggedIn) {
+      checkSavedCards();
+    } else {
+      clearSavedOnLogout();
+    }
   }, [savedCards, loggedIn]);
 
   const closePopups = () => {
@@ -192,6 +197,7 @@ const App = () => {
           localStorage.removeItem('jwt');
           setCurrentUser({});
           setLoggedIn(false);
+          setSavedCards([]);
           clearSavedOnLogout();
           closePopups();
         },
