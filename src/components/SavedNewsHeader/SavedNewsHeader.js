@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import CurrentUserContext from '../../context/CurrentUserContext';
 import './saved-news-header.css';
 
 const SavedNewsHeader = ({ cards }) => {
@@ -9,8 +10,21 @@ const SavedNewsHeader = ({ cards }) => {
   const [keywordsMsgWords, setKeywordsMsgWords] = useState('');
   const [keywordsMsgConjunction, setKeywordsMsgConjunction] = useState('');
   const [keywordsMsgTail, setKeywordsMsgTail] = useState('');
-  const userName = 'Дитрих';
-  const numberOfCards = cards.length;
+  const [user, setUserName] = useState('Пользователь');
+  const [numberOfCards, setNumberOfCards] = useState(0);
+
+  const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    setUserName(currentUser.name);
+    setNumberOfCards(cards.length);
+  }, []);
+  useEffect(() => {
+    setUserName(currentUser.name);
+  }, [currentUser]);
+  useEffect(() => {
+    setNumberOfCards(cards.length);
+  }, [cards]);
 
   useEffect(() => {
     const keywordsFiltered = cards
@@ -20,16 +34,16 @@ const SavedNewsHeader = ({ cards }) => {
         return [...acc, item];
       }), []);
     setKeywords(keywordsFiltered);
-  }, []);
+  }, [cards, user]);
 
   useEffect(() => {
-    if (!numberOfCards) return setTitle(`${userName}, у вас нет сохранённых статей`);
+    if (!numberOfCards) return setTitle(`${user}, у вас нет сохранённых статей`);
     const tail = numberOfCards % 10;
-    if (tail === 1) return setTitle(`${userName}, у вас ${numberOfCards} сохранённая статья`);
-    if (tail > 1 && tail < 5) return setTitle(`${userName}, у вас ${numberOfCards} сохранённых статьи`);
-    if (tail >= 5 || tail === 0) return setTitle(`${userName}, у вас ${numberOfCards} сохранённых статей`);
+    if (tail === 1) return setTitle(`${user}, у вас ${numberOfCards} сохранённая статья`);
+    if (tail > 1 && tail < 5) return setTitle(`${user}, у вас ${numberOfCards} сохранённых статьи`);
+    if (tail >= 5 || tail === 0) return setTitle(`${user}, у вас ${numberOfCards} сохранённых статей`);
     return setTitle('');
-  }, []);
+  }, [cards, user]);
   useEffect(() => {
     const num = keywords.length;
     if (num === 1) {
