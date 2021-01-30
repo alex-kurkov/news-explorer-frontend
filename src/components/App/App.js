@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
-  BrowserRouter as Router, Switch, Redirect, Route,
+  Switch, Redirect, Route, useHistory,
 } from 'react-router-dom';
 import CurrentUserContext from '../../context/CurrentUserContext';
 import Header from '../Header/Header';
@@ -41,6 +41,7 @@ const App = () => {
   });
   const [requestError, setRequestError] = useState('');
   const [loaderVisible, setLoaderVisible] = useState(false);
+  const history = useHistory();
 
   // token check
   const checkUser = () => {
@@ -106,7 +107,7 @@ const App = () => {
   }, [loggedIn]);
 
   useEffect(() => {
-    if (!loggedIn) (<Redirect to="/" />);
+    if (!loggedIn) history.push('/');
     const jwt = localStorage.getItem('jwt');
     if (loggedIn && jwt) {
       setLoaderVisible(true);
@@ -262,57 +263,54 @@ const App = () => {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Router>
-
-        <div className="app">
-          <Header loggedIn={loggedIn} handleAuthBtnClick={handleAuthBtnClick} />
-          <Switch>
-            <Route exact path="/">
-              <Main
-                handleArticleDelete={handleArticleDelete}
-                handleArticleSave={handleArticleSave}
-                searchNews={searchNews}
-                loggedIn={loggedIn}
-                cards={foundCards}
-                newsListStatus={newsListStatus}
-                handleBookmarkUnsavedClick={() => setLoginOpen(true)}
-              />
-            </Route>
-            <ProtectedRoute
-              exact
-              path="/saved-news"
-              loggedIn={loggedIn}
+      <div className="app">
+        <Header loggedIn={loggedIn} handleAuthBtnClick={handleAuthBtnClick} />
+        <Switch>
+          <Route exact path="/">
+            <Main
               handleArticleDelete={handleArticleDelete}
-              cards={savedCards}
-              component={SavedPage}
+              handleArticleSave={handleArticleSave}
+              searchNews={searchNews}
+              loggedIn={loggedIn}
+              cards={foundCards}
+              newsListStatus={newsListStatus}
+              handleBookmarkUnsavedClick={() => setLoginOpen(true)}
             />
-            <Route path="">
-              <Redirect to="/" />
-            </Route>
-          </Switch>
-          <Footer />
-          <Login
-            isOpen={loginOpen}
-            onClose={closePopups}
-            onLogin={handleLogin}
-            switchToRegister={switchToRegister}
-            requestError={requestError}
+          </Route>
+          <ProtectedRoute
+            exact
+            path="/saved-news"
+            loggedIn={loggedIn}
+            handleArticleDelete={handleArticleDelete}
+            cards={savedCards}
+            component={SavedPage}
           />
-          <Register
-            isOpen={registerOpen}
-            onClose={closePopups}
-            onRegister={handleRegister}
-            switchToLogin={switchToLogin}
-            requestError={requestError}
-          />
-          <Tooltip
-            options={tooltipOptions}
-            isOpen={tooltipOpen}
-            onClose={() => setTooltipOpen(false)}
-          />
-          <AppLoader loaderVisible={loaderVisible} />
-        </div>
-      </Router>
+          <Route path="">
+            <Redirect to="/" />
+          </Route>
+        </Switch>
+        <Footer />
+        <Login
+          isOpen={loginOpen}
+          onClose={closePopups}
+          onLogin={handleLogin}
+          switchToRegister={switchToRegister}
+          requestError={requestError}
+        />
+        <Register
+          isOpen={registerOpen}
+          onClose={closePopups}
+          onRegister={handleRegister}
+          switchToLogin={switchToLogin}
+          requestError={requestError}
+        />
+        <Tooltip
+          options={tooltipOptions}
+          isOpen={tooltipOpen}
+          onClose={() => setTooltipOpen(false)}
+        />
+        <AppLoader loaderVisible={loaderVisible} />
+      </div>
     </CurrentUserContext.Provider>
   );
 };
